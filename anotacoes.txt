@@ -1,4 +1,21 @@
 #autor-coment - div que mostra o autor do comentário a ser publicado
+
 #coment - textarea - comentário
-#publi-coment - botão para publicar comentário 
+
+#publi-coment - botão para publicar comentário
+
 #list-coment - lista com os comentários já publicados
+
+***** CARD DE COMENTÁRIOS *********
+<div class="card border-secondary mb-2" style="max-width: 100%;">
+    <div class="card-header">
+        Publicado em DATA às HORA
+    </div>
+    <div class="card-body text-secondary">
+        <h5 class="card-title">AUTOR DO COMENTÁRIO</h5>
+        <p class="card-text">
+            COMENTÁRIO
+        </p>
+    </div>
+</div>
+***************************
