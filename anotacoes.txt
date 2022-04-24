@@ -1,0 +1,4 @@
+#autor-coment - div que mostra o autor do comentário a ser publicado
+#coment - textarea - comentário
+#publi-coment - botão para publicar comentário 
+#list-coment - lista com os comentários já publicados
