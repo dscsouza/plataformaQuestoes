@@ -1,24 +1,48 @@
-// Inicializando o Firebase
+
 const firebaseConfig = {
-
-    apiKey: "AIzaSyBj72fCD38TFSS-e6jjcUmCTUoWIAOucdc",
-
-    authDomain: "colegio-21505.firebaseapp.com",
-
-    projectId: "colegio-21505",
-
-    storageBucket: "colegio-21505.appspot.com",
-
-    messagingSenderId: "1006539121032",
-
-    appId: "1:1006539121032:web:502e0ad848ef7b125e9a3d",
-
-    measurementId: "G-ZQ33NNKRNZ"
+  apiKey: "AIzaSyDhLvuScY2JBwnjRh0bNaEA6FNwSBsV2LA",
+  authDomain: "questionsplatform.firebaseapp.com",
+  projectId: "questionsplatform",
+  storageBucket: "questionsplatform.appspot.com",
+  messagingSenderId: "281612669871",
+  appId: "1:281612669871:web:33580b25f722980a8b555a",
+  measurementId: "G-RE70HMRJ4M"
 };
+
+// Initialize Firebase
 firebase.initializeApp(firebaseConfig);
+
+
 const db = firebase.firestore();
 const auth = firebase.auth();
+const questoes = "bancoQuestoes";
 
+console.log(db)
+console.log(auth)
+
+
+// LEITURA E ALTERAÇÃO DO BANCO DE DADOS
+
+function lerLista(){
+    console.log("clicado")
+    db.collection(questoes).get().then(snapshot=>{
+        snapshot.forEach(item =>{
+            console.log(item.data())
+        })
+    }).catch(error=>{
+        console.log("Erro ao acesar o banco de dados: ", error)
+    })
+}
+
+
+
+
+
+
+
+
+
+// VALIDACAO DE USUÁRIOS
 
 
 function criarUsuario(email, senha){
