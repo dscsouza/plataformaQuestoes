@@ -1,5 +1,15 @@
 questaoAtual = ''
 
+listaQuestoes = [];
+
+
+
+
+
+
+
+// FUNÇÕES DE LOGIN
+
 function logar(){
     username = document.querySelector("#username")
     password = document.querySelector("#password")
@@ -7,6 +17,8 @@ function logar(){
     login(username.value, password.value)
 
     window.location.href = "./questoes.html";
+
+    listaQuestoes = consultaLista();
 
     
 }
@@ -31,3 +43,5 @@ function ignorar(a){
     $("#" + questaoSelecionada).toggleClass("riscado");
     
 }
+
+

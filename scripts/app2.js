@@ -17,26 +17,24 @@ const db = firebase.firestore();
 const auth = firebase.auth();
 const questoes = "bancoQuestoes";
 
-console.log(db)
-console.log(auth)
-
 
 // LEITURA E ALTERAÇÃO DO BANCO DE DADOS
 
-function lerLista(){
-    console.log("clicado")
+function consultaLista(){
+    i = 0;
+    dados = [];
+    console.log("lerlista")
     db.collection(questoes).get().then(snapshot=>{
         snapshot.forEach(item =>{
-            console.log(item.data())
+            dados.push(item.data())
+           
         })
     }).catch(error=>{
         console.log("Erro ao acesar o banco de dados: ", error)
     })
+    
+    return dados;
 }
-
-
-
-
 
 
 
