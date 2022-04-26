@@ -379,10 +379,36 @@ function exibirComentarios(pos){
 function publicarComentario(){
     //usuarioLogado
     publicacao = document.querySelector("#coment").value
-    console.log(`Autor: ${usuarioLogado} - comentário: ${publicacao}`)
+    console.log(`Autor: ${usuarioLogado} - comentário: ${publicacao} - FALTA IMPLEMENTAR A FUNÇÃO PARA SALVAR O COMENTÁRIO NO BANCO DE DADOS`)
+    datahoraAtual = "data hora"
+
+    const node = document.createElement("div");
+    // const textnode = document.createTextNode(`
+    // <div class="card border-secondary mb-2" style="max-width: 100%;">
+    //   <div class="card-header">${datahoraAtual}</div>
+    //   <div class="card-body text-secondary">
+    //     <h5 class="card-title">${usuarioLogado}</h5>
+    //     <p class="card-text">
+    //     ${publicacao}
+    //     </p>
+    //   </div>
+    // </div>`);
+    // node.appendChild(textnode);
+    document.getElementById("list-coment").appendChild(node).innerHTML=`
+    <div class="card border-secondary mb-2" style="max-width: 100%;">
+      <div class="card-header">${datahoraAtual}</div>
+      <div class="card-body text-secondary">
+        <h5 class="card-title">${usuarioLogado}</h5>
+        <p class="card-text">
+        ${publicacao}
+        </p>
+      </div>
+    </div>`
+    ;
+
 }
 
 function salvarAnotacao(){
-    
+
 }
 
