@@ -81,8 +81,9 @@ function login(email, password){
             window.location.href = "./questoes.html";
         }).catch(error =>{
             console.log("Ocorreu algum erro na autenticação: ", error);
-            $('#alertTop').toggleClass('show')
-            $('#alertTop').html(" " + error.message+ "<button type='button' class='close  text-right' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span>")
+           
+            document.querySelector('#alertTopContainer').innerHTML = `<div id="alertTop" class="alert alert-danger alert-dismissible fade show  fixed-top shadow" role="alert"> ${error.message}<button type="button" class="close  text-right" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></div>`
+      
         })
 
 
