@@ -1,4 +1,9 @@
 
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
   apiKey: "AIzaSyDhLvuScY2JBwnjRh0bNaEA6FNwSBsV2LA",
   authDomain: "questionsplatform.firebaseapp.com",
@@ -17,6 +22,8 @@ const db = firebase.firestore();
 const auth = firebase.auth();
 const questoes = "bancoQuestoes";
 
+console.log(auth)
+let emailCurrentUser;
 
 // LEITURA E ALTERAÇÃO DO BANCO DE DADOS
 
@@ -60,22 +67,22 @@ function criarUsuario(email, senha){
 
 
 function login(email, password){
-    let userEmail = email;
-    let userPassword = password;
-
-   
+   console.log("função login", auth)
     //persistência de dados do usuário
     //SESSION - fica logado na aba atual, mas em novas abas não loga
     //LOCAL - pode abrir várias abas que continua logado
     //NONE - SE ATUALIZAR a página o usuário desloga
-    auth.setPersistence(firebase.auth.Auth.Persistence.NONE).then(()=>{
+    auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL).then(() =>{
 
-        auth.signInWithEmailAndPassword(userEmail, userPassword)
+        auth.signInWithEmailAndPassword(email, password)
         .then( loggedUser => {
             // console.log(loggedUser);
-            console.log("Login efetuado: ",auth.currentUser.email);
+            console.log("Login efetuado: ",auth.currentUser);
+            window.location.href = "./questoes.html";
         }).catch(error =>{
             console.log("Ocorreu algum erro na autenticação: ", error);
+            $('#alertTop').toggleClass('show')
+            $('#alertTop').html(" " + error.message+ "<button type='button' class='close  text-right' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span>")
         })
 
 
@@ -100,16 +107,18 @@ function logout(){
 
 function observarLogin(){
 
-
-auth.onAuthStateChanged(user=>{
-    if (user){
-        console.log("Usuário Logado: ",user.email);
-    }else{
-        console.log("Ninguém logado")
-    }
-})
+    auth.onAuthStateChanged(user=>{
+        if (user){
+            console.log("Usuário Logado: ",user.email);
+        }else{
+            console.log("Ninguém logado")
+        }
+    })
 
 }
+
+
+
 // login("novo@teste.com", "123abc");
 //logar depois de 3 segundos
 // setTimeout(login("novo@teste.com", "123abc"),3000);

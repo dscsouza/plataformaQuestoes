@@ -3,16 +3,19 @@
 idQuestions = [];
 questao = { }
 
-function allIdQuestion(_callback){
-    db.collection(questoes).get().then(snapshot=>{
-        snapshot.forEach((docs) =>{
-           idQuestions.push(docs.id);
-        })
-    }).catch(error=>{
-        console.log("Erro ao acesar o banco de dados: ", error)
-    });
-    return idQuestions;
-    _callback()
+function allIdQuestion(){
+    
+    let promise = new Promise(function(resolve, reject){
+        db.collection(questoes).get().then(snapshot=>{
+            snapshot.forEach((docs) =>{
+               idQuestions.push(docs.id);
+            })
+        }).catch(error=>{
+            console.log("Erro ao acesar o banco de dados: ", error)
+        });
+    })
+    console.log(idQuestions[1])
+    return promise;
 }
 
 function buildObjQuestao(id){
@@ -68,6 +71,7 @@ function comentario(id, datahora, autor, comentario){
 } 
 
 
+document.querySelector('#autor-coment').innerHTML = emailCurrentUser;
 
 
 
@@ -76,20 +80,19 @@ function comentario(id, datahora, autor, comentario){
 
 // FUNÇÕES LEITURA E ALTERAÇÃO NO BANCO DE DADOS
 
+function imprimeID(){
+    console.log(idQuestions[1])
+
+}
+
+
+
 document.querySelector("#bt-responder").addEventListener("click",()=>{
-    // console.log("click");
     
-    setTimeout(() => {
-        
-        console.log(buildObjQuestao(idQuestions[1]))
-    }, 500);
-    
+
     allIdQuestion()
     
-    
-    
-   
-    
+     
 });
 
 

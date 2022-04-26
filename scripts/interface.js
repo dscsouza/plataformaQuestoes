@@ -6,20 +6,13 @@ listaQuestoes = [];
 
 
 
-
-
 // FUNÇÕES DE LOGIN
 
 function logar(){
-    username = document.querySelector("#username")
-    password = document.querySelector("#password")
-
-    login(username.value, password.value)
-
-    window.location.href = "./questoes.html";
-
-    listaQuestoes = consultaLista();
-
+    username = document.querySelector("#username").value
+    password = document.querySelector("#password").value
+    console.log(username, password)
+    login(username, password)
     
 }
 function selecionar(a){
@@ -43,5 +36,6 @@ function ignorar(a){
     $("#" + questaoSelecionada).toggleClass("riscado");
     
 }
+
 
 
