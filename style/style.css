@@ -20,6 +20,42 @@
  .placeholder-text::placeholder{
    margin:auto;
   }
+
+
+  .bg-navbar{
+    /* metade transparente: alpha = .5 */
+    background-color: rgba(255, 255, 255, 0.224) !important;
+ }
+ 
+.resposta-errada{
+    animation: errada .4s;
+    animation-iteration-count: 2;
+
+}
+.resposta-certa{
+  animation: certa .4s;
+  animation-iteration-count: 2;
+  
+}
+
+.ponteiro{
+  cursor: pointer;
+}
+
+
+/* keyframe para ajustar até onde treme */
+@keyframes errada {
+  0% {background-color: rgba(255, 0, 0, 0.238);}
+  50% {background-color: rgba(255, 0, 0, 0.041)}
+  100% {background-color: rgba(255, 0, 0, 0.238)}
+}
+
+@keyframes certa {
+  0% {background-color: rgba(0, 255, 0, 0.238);}
+  50% {background-color: rgba(0, 255, 0, 0.041)}
+  100% {background-color: rgba(0, 255, 0, 0.238)}
+}
+
  
  
  /* Bordered form */

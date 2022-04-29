@@ -22,6 +22,7 @@ const db = firebase.firestore();
 const auth = firebase.auth();
 const questoes = "bancoQuestoes";
 
+
 console.log(auth)
 let emailCurrentUser;
 
@@ -78,11 +79,23 @@ function login(email, password){
         .then( loggedUser => {
             // console.log(loggedUser);
             console.log("Login efetuado: ",auth.currentUser);
+            console.log("UID do usuário: ", firebase.auth().currentUser.uid)
             window.location.href = "./questoes.html";
         }).catch(error =>{
             console.log("Ocorreu algum erro na autenticação: ", error);
            
-            document.querySelector('#alertTopContainer').innerHTML = `<div id="alertTop" class="alert alert-danger alert-dismissible fade show  fixed-top shadow" role="alert"> ${error.message}<button type="button" class="close  text-right" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></div>`
+            document.querySelector('#alertTopContainer').innerHTML = `<div id="alertTop" class="alert alert-danger alert-dismissible fade show  fixed-top shadow" role="alert"> 
+            <div class="row">
+            <div class="col-sm">
+            ${error.message}
+            </div>
+            <div class="col-sm">
+            <button type="button" class="close  text-right" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span>
+            </div>
+            </div>
+            
+            
+            </div>`
       
         })
 

@@ -1,4 +1,4 @@
-questaoAtual = ''
+respostaAtual = ''
 
 listaQuestoes = [];
 
@@ -17,13 +17,17 @@ function logar(){
 }
 function selecionar(a){
     questaoSelecionada = a.id
-    if (questaoAtual == ''){
+    if (respostaAtual == ''){
         $("#" + questaoSelecionada).toggleClass("table-active")
-        questaoAtual = questaoSelecionada    
-    }else if(questaoSelecionada != questaoAtual){
-        $("#" + questaoAtual).toggleClass("table-active")
+        respostaAtual = questaoSelecionada    
+    }else if(questaoSelecionada != respostaAtual){
+        $("#" + respostaAtual).toggleClass("table-active")
         $("#" + questaoSelecionada).toggleClass("table-active")
-        questaoAtual = questaoSelecionada
+        respostaAtual = questaoSelecionada
+    } else if (a == 99){
+        $("#" + respostaAtual).toggleClass("table-active")
+        respostaAtual = ''
+        respostaAtual = questaoSelecionada
     }
     console.log(a.id)
     // document.querySelector(a.id).toggleClass()
