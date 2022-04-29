@@ -387,7 +387,7 @@ function publicarComentario(){
 
 
 db.collection(questoes).doc(idQuestions[questaoAtual])
-    .collection('comentarios').doc(idUser).set({
+    .collection('comentarios').doc().set({
         comentario: publicacao,
         datahora: datahoraAtual,
         autor: usuarioLogado

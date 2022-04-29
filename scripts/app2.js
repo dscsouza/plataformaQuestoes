@@ -21,6 +21,10 @@ firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 const auth = firebase.auth();
 const questoes = "bancoQuestoes";
+const raizComentarios = "comentarios"
+const raizAnotacoes = "anotacoes"
+const raizUsuarios = "usuarios"
+const raizIds = "ids"
 
 
 console.log(auth)
