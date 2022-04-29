@@ -347,13 +347,13 @@ exibeAnotacoes(pos)
 
 
 function exibirComentarios(arrayComment){
-    nodeComentario = ""
+    nodeComentario = " "
 
     arrayComment.forEach((arg)=>{
         console.log(arg)
 
         
-        nodeComentario = `
+        nodeComentario += `
         <div class="card border-secondary mb-2" style="max-width: 100%;">
           <div class="card-header">${arg.datahora}</div>
           <div class="card-body text-secondary">
@@ -362,7 +362,7 @@ function exibirComentarios(arrayComment){
             ${arg.comentario}
             </p>
           </div>
-        </div>` + nodeComentario;
+        </div>`;
 
         document.querySelector("#list-coment").innerHTML = nodeComentario
 
@@ -389,68 +389,29 @@ function publicarComentario(){
 db.collection(questoes).doc(idQuestions[questaoAtual])
     .collection('comentarios').doc(idUser).set({
         comentario: publicacao,
-        datahora: datahoraAtual
+        datahora: datahoraAtual,
+        autor: usuarioLogado
     }).then(()=>{
         resgatarComentarios()
     })
-
-    
-
-
-
-
-
-
-
-    // const node = document.createElement("div");
-    // // const textnode = document.createTextNode(`
-    // // <div class="card border-secondary mb-2" style="max-width: 100%;">
-    // //   <div class="card-header">${datahoraAtual}</div>
-    // //   <div class="card-body text-secondary">
-    // //     <h5 class="card-title">${usuarioLogado}</h5>
-    // //     <p class="card-text">
-    // //     ${publicacao}
-    // //     </p>
-    // //   </div>
-    // // </div>`);
-    // // node.appendChild(textnode);
-    // document.getElementById("list-coment").appendChild(node).innerHTML=`
-    // <div class="card border-secondary mb-2" style="max-width: 100%;">
-    //   <div class="card-header">${datahoraAtual}</div>
-    //   <div class="card-body text-secondary">
-    //     <h5 class="card-title">${usuarioLogado}</h5>
-    //     <p class="card-text">
-    //     ${publicacao}
-    //     </p>
-    //   </div>
-    // </div>`
-    // ;
-
 }
 
 function resgatarComentarios(){
+    comments = []
     idUser = firebase.auth().currentUser.uid
-    // campoAnotacao = document.querySelector("#text-anotacoes")
 
 
     db.collection(questoes).doc(idQuestions[questaoAtual])
     .collection('comentarios').get().then(snapshot=>{
-        snapshot.forEach((doc)=>{
-                comments.push(doc.data)
-                
-            }).then(()=>{
-                exibirComentarios(comments)
-            })
-        
-    }).then((a)=>{
-         
-       console.log("Banco de dados lido com sucesso...")
-    }).
-    catch(error=>{
-        console.log("Erro ao acesar anotação: ", error)
+        snapshot.forEach(doc=>{
+            comments.push(doc.data())
+        })
 
-        // document.querySelector('#alertTopContainer').innerHTML = `<div id="alertTop" class=" float-left alert alert-danger fade show  fixed-top shadow " role="alert"> ${error.message}. <a href="./index.html">Voltar para tela de login</a><button type="button" class="close  text-right" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></div>`
-    });
+    }).then(()=>{
+        exibirComentarios(comments)
+    })
+    
+    
 }
 
 
