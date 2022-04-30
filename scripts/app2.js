@@ -84,10 +84,11 @@ function login(email, password){
             // console.log(loggedUser);
             console.log("Login efetuado: ",auth.currentUser);
             console.log("UID do usuário: ", firebase.auth().currentUser.uid)
+            $("#spin").removeClass("d-none")
             window.location.href = "./questoes.html";
         }).catch(error =>{
             console.log("Ocorreu algum erro na autenticação: ", error);
-           
+            $("#spin").removeClass("d-none")
             document.querySelector('#alertTopContainer').innerHTML = `<div id="alertTop" class="alert alert-danger alert-dismissible fade show  fixed-top shadow" role="alert"> 
             <div class="row">
             <div class="col-sm">
