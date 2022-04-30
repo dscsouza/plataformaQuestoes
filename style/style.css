@@ -42,7 +42,17 @@
   cursor: pointer;
 }
 
+.question{
+  user-select: none;
+  text-shadow: darkgray;
+}
+.question:hover .letra{
+  background-color: #17a3b883;
+  border-radius: 10%;
+  color:white;
+  
 
+}
 
 
 /* keyframe para ajustar até onde treme */

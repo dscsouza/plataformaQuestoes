@@ -155,7 +155,7 @@ function exibirQuestão(pos){
             </div>
         </nav>
 
-    <div class="container bg-light">
+    <div class="w-100 container bg-light">
 
         <div class="container-fluid alert alert-light  text-justify text-color-black">
         
@@ -164,36 +164,36 @@ function exibirQuestão(pos){
         ${questions[pos].enunciado}
         </div>
 
-        <table class="table table-sm table-hover table-borderless">
+        <table class="table table-sm table-borderless">
             <tbody>
-                <tr id="a" class="ponteiro" onclick="selecionar(this)" ondblclick="ignorar(this)" ontouchmove="ignorar(this)">
-                    <th scope="row" class="align-middle">A</th>
+                <tr id="a" class="question ponteiro" onclick="selecionar(this)" ondblclick="ignorar(this)" ontouchmove="ignorar(this)">
+                    <th scope="row" class="letra align-middle">A</th>
                     <td class="">
                         <div class="">
                             ${questions[pos].alternativas.a}
                         </div>
                     </td>
                 </tr>
-                <tr id="b" class="ponteiro" onclick="selecionar(this)" ondblclick="ignorar(this)" ontouchmove="ignorar(this)">
-                    <th scope="row" class="align-middle">B</th>
+                <tr id="b" class="question ponteiro" onclick="selecionar(this)" ondblclick="ignorar(this)" ontouchmove="ignorar(this)">
+                    <th scope="row" class="letra align-middle">B</th>
                     <td>
                     ${questions[pos].alternativas.b}
                     </td>
                 </tr>
-                <tr id="c" class="ponteiro" onclick="selecionar(this)" ondblclick="ignorar(this)" ontouchmove="ignorar(this)">
-                    <th scope="row" class="align-middle">C</th>
+                <tr id="c" class="question ponteiro" onclick="selecionar(this)" ondblclick="ignorar(this)" ontouchmove="ignorar(this)">
+                    <th scope="row" class="letra align-middle">C</th>
                     <td colspan="2">
                     ${questions[pos].alternativas.c}
                     </td>
                 </tr>
-                <tr id="d" class="ponteiro" onclick="selecionar(this)" ondblclick="ignorar(this)" ontouchmove="ignorar(this)">
-                    <th scope="row" class="align-middle">D</th>
+                <tr id="d" class="question ponteiro" onclick="selecionar(this)" ondblclick="ignorar(this)" ontouchmove="ignorar(this)">
+                    <th scope="row" class="letra align-middle">D</th>
                     <td colspan="2">
                     ${questions[pos].alternativas.d}
                     </td>
                 </tr>
-                <tr id="e" class="ponteiro" onclick="selecionar(this)" ondblclick="ignorar(this)" ontouchmove="ignorar(this)">
-                    <th scope="row" class="align-middle">
+                <tr id="e" class="question ponteiro" onclick="selecionar(this)" ondblclick="ignorar(this)" ontouchmove="ignorar(this)">
+                    <th scope="row" class="letra align-middle">
                     <div> E</div>
                     </th>
                     <td colspan="2">
