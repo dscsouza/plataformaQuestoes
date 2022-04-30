@@ -7,6 +7,36 @@ questaoAtual = 0;
 comments = [];
 
 
+if (darkMode){
+    table = "table-dark text-white"
+    textColor = "text-dark"
+    textDark = ""
+    back = "bg-dark text-white"
+    navQuestion = "navbar-dark bg-transparent"
+    document.body.style.setProperty('--texto-questao', 'white')
+    document.body.style.setProperty('--bg-color-body', 'rgba(0, 0, 0, 0.803)')
+    btnPublicar = "btn-outline-light"
+    btnNavi = "btn-outline-light"
+    
+
+} else {
+    table = "table-sm"
+    back = "bg-light"
+    textColor = "text-black"
+    textDark = "text-dark"
+    navQuestion = "navbar-light bg-light"
+    document.body.style.setProperty('--texto-questao', 'black')
+    document.body.style.setProperty('--bg-color-body', 'white')
+    btnNavi = "btn-outline-light text-primary"
+    btnPublicar = "btn-outline-dark"
+
+    
+
+}
+
+
+
+
 function allIdQuestion(){
     
     
@@ -78,13 +108,7 @@ function buildObjComment(id){
     })
 }
 
-//constroi objetos dos comentários
-function comentario(id, datahora, autor, comentario){ 
-    this.id = id; 
-    this.datahora = datahora;
-    this.autor = autor;
-    this.comentario = comentario; 
-} 
+
 
 
 //VERIFICA O USUÁRIO LOGADO
@@ -126,12 +150,6 @@ auth.onAuthStateChanged(user=>{
 
 
 
-// document.querySelector("#bt-responder").addEventListener("click",()=>{
-       
-// });
-
-
-
 
 function exibirQuestão(pos){
 
@@ -155,16 +173,16 @@ function exibirQuestão(pos){
             </div>
         </nav>
 
-    <div class="w-100 container bg-light">
+    <div class="w-100 container ${back}">
 
-        <div class="container-fluid alert alert-light  text-justify text-color-black">
+        <div class="container-fluid alert alert-light text-justify ${back}">
         
 
-        <div class="p-2 shadow-sm text-justify text-dark font-weight-bold mb-2 ml-1">
+        <div class="p-2 shadow-sm text-justify ${table} ${textDark} font-weight-bold mb-2 ml-1">
         ${questions[pos].enunciado}
         </div>
 
-        <table class="table table-sm table-borderless">
+        <table id="tableQuestion" class="table ${table} table-borderless">
             <tbody>
                 <tr id="a" class="question ponteiro" onclick="selecionar(this)" ondblclick="ignorar(this)" ontouchmove="ignorar(this)">
                     <th scope="row" class="letra align-middle">A</th>
@@ -219,14 +237,14 @@ function exibirQuestão(pos){
     </div>    
 
         
-        <nav class="navbar sticky-bottom navbar-light bg-light bg-gradient">
+        <nav id="navQuestion" class="navbar sticky-bottom ${navQuestion} bg-gradient">
     
         
       
        
 
           <a id="btn-anterior" onclick = "qAnterior()" href="#" tabindex="-1">
-          <div class="btn btn-outline-light text-primary font-italic ">
+          <div class="btn ${btnNavi} font-italic ">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-double-left" viewBox="0 0 16 16">
         <path fill-rule="evenodd" d="M8.354 1.646a.5.5 0 0 1 0 .708L2.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
         <path fill-rule="evenodd" d="M12.354 1.646a.5.5 0 0 1 0 .708L6.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
@@ -246,7 +264,7 @@ function exibirQuestão(pos){
 
           
           <a id="btn-proxima" onclick = "qProxima()" href="#" tabindex="1">
-          <div class="btn btn-outline-light text-primary font-italic">
+          <div class="btn ${btnNavi} font-italic">
           Próxima 
           <svg class="" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-double-right" viewBox="0 0 16 16">
   <path fill-rule="evenodd" d="M3.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L9.293 8 3.646 2.354a.5.5 0 0 1 0-.708z"/>
@@ -266,7 +284,7 @@ function exibirQuestão(pos){
 
 
       document.querySelector("#anotacaoes-comentario").innerHTML=`
-<div class="container bg-light">
+<div class="container ${back}">
   <ul class="nav nav-tabs" id="myTab" role="tablist">
     <li class="nav-item">
       <a class="nav-link active" id="coment-tab" data-toggle="tab" href="#comentarios" role="tab" aria-controls="comentarios" aria-selected="true">
@@ -302,7 +320,7 @@ function exibirQuestão(pos){
       <div class="input-group mb-2">
         <textarea id="coment" class="form-control" aria-label="Digite seu comentário aqui..." placeholder="Digite seu comentário aqui..."></textarea>
         <div class="input-group-append">
-          <button id="publi-coment" class="btn btn-outline-secondary btn-sm" onclick="publicarComentario()">Publicar</button>
+          <button id="publi-coment" class="btn ${btnPublicar} btn-sm" onclick="publicarComentario()">Publicar</button>
         </div>            
       </div>
 
@@ -364,10 +382,10 @@ function exibirComentarios(arrayComment){
 
         
         nodeComentario += `
-        <div class="card border-secondary mb-2" style="max-width: 100%;">
+        <div class="card border-secondary mb-2 ${textColor}" style="max-width: 100%;">
           <div class="card-header">${Date(arg.datahora.seconds)}</div>
-          <div class="card-body text-secondary">
-            <h5 class="card-title">${arg.autor}</h5>
+          <div class="card-body">
+            <h5 class="card-title ">${arg.autor}</h5>
             <p class="card-text">
             ${arg.comentario}
             </p>
@@ -403,6 +421,9 @@ db.collection(questoes).doc(idQuestions[questaoAtual])
         autor: usuarioLogado
     }).then(()=>{
         resgatarComentarios()
+        alerta("Comentário incluído com sucesso.", false, "info")
+    }).catch(err=>{
+        alerta("Ocorreu um erro. Verifique sua conexão com a internet.", false, "danger")
     })
 }
 
@@ -469,6 +490,7 @@ db.collection(questoes).doc(idQuestions[questaoAtual])
         anotacao: anotacoes
     }).then(()=>{
         $("#spin-anot").toggleClass("d-none")
+        alerta("Anotação salva...", false, "info")
         console.log("anotação salvo...")
     }).catch(err=>{
         $("#spin-anot").toggleClass("d-none")

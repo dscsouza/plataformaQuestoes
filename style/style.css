@@ -1,7 +1,16 @@
+:root{
+  --texto-questao:white;
+  --bg-color-body: rgba(0, 0, 0, 0.803);
+}
+.containerPrincipal{
+  background-color: var(--bg-color-body)
+}
+
 .container{
      width: 40%;
      margin: auto;
      padding: 16px;
+     
  }
 
  .margin-bottom-5px{
@@ -40,20 +49,24 @@
 
 .ponteiro{
   cursor: pointer;
+  ;
 }
 
 .question{
   user-select: none;
   text-shadow: darkgray;
+  color: var(--texto-questao);
+  
 }
 .question:hover .letra{
-  background-color: #17a3b883;
+  background-color: #17a3b8a5;
   border-radius: 5px;
-  color:white;
+  color: var(--texto-questao);
 }
 
 .letra{
   width:10px;
+  color: var(--texto-questao);
 }
 
 

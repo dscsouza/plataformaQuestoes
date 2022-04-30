@@ -26,9 +26,8 @@ const raizAnotacoes = "anotacoes"
 const raizUsuarios = "usuarios"
 const raizIds = "ids"
 
-
-console.log(auth)
 let emailCurrentUser;
+
 
 // LEITURA E ALTERAÇÃO DO BANCO DE DADOS
 
@@ -72,6 +71,7 @@ function criarUsuario(email, senha){
 
 
 function login(email, password){
+    document.querySelector("#spin").classList.remove("d-none")
    console.log("função login", auth)
     //persistência de dados do usuário
     //SESSION - fica logado na aba atual, mas em novas abas não loga
@@ -81,14 +81,13 @@ function login(email, password){
 
         auth.signInWithEmailAndPassword(email, password)
         .then( loggedUser => {
-            // console.log(loggedUser);
             console.log("Login efetuado: ",auth.currentUser);
             console.log("UID do usuário: ", firebase.auth().currentUser.uid)
-            $("#spin").removeClass("d-none")
+            document.querySelector("#spin").classList.add("d-none")
             window.location.href = "./questoes.html";
         }).catch(error =>{
             console.log("Ocorreu algum erro na autenticação: ", error);
-            $("#spin").removeClass("d-none")
+            document.querySelector("#spin").classList.add("d-none")
             document.querySelector('#alertTopContainer').innerHTML = `<div id="alertTop" class="alert alert-danger alert-dismissible fade show  fixed-top shadow" role="alert"> 
             <div class="row">
             <div class="col-sm">
@@ -107,6 +106,7 @@ function login(email, password){
 
     }).catch(error =>{
         console.log("Ocorreu algum erro na presistência dos dados:  ", error);
+        document.querySelector("#spin").classList.add("d-none")
     })
     
 }
@@ -158,3 +158,46 @@ function lerLista(){
     })
 }
 
+
+//função criada para exibir alertas no topo da tela
+//parâmetros:
+//mensagem: "mensagem a ser exibida"
+//dismiss:  true: exibe botao de fechar. 
+//          false: esconde automaticamente depois de 3s
+//tipo:
+//     primary, danger, secondary, sucess, warning, alert, dark   
+//      todos os tipos de alerta definidos no bootstrap
+//      
+function alerta(mensagem, dismiss, tipo){
+    
+    if (dismiss){
+        document.querySelector('#alertTopContainer').innerHTML = `
+        <div id="alertTop" class="alert alert-danger alert-dismissible fade show  fixed-top shadow" role="alert"> 
+            <div class="row">
+                <div class="col-sm">
+                    ${mensagem}
+                </div>
+            <div class="col-sm">
+                <button type="button" class="close  text-right" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </div>
+            </div>       
+        </div>`
+        
+    } else if (!dismiss){
+        document.querySelector('#alertTopContainer').innerHTML = `
+            
+                <div  id="alertTop" class="w-auto fixed-top alert alert-${tipo} fade show shadow" role="alert"> 
+                    <div class="row text-center">
+                        <div class="col-sm">
+                            ${mensagem}
+                        </div>
+                    </div>
+                </div>
+            
+            `
+        $("#alertTop").fadeOut(3000);
+    }
+    
+    
+}
