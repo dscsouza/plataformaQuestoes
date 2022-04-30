@@ -27,3 +27,96 @@ botões
 usar o modelo para respondida
 e avançar e voltar
 https://edrodrigues.com.br/blog/20-incriveis-botoes-animados-de-css-puro/
+
+
+
+
+<div id="info-questao" class="alert alert-light  text-center">
+        <div class="row">
+            <div class="col-sm">
+                Ano: ${questions[pos].ano}
+            </div>
+            <div class="col-sm">
+                Banca: ${questions[pos].banca}
+            </div>
+            <div class="col-sm">
+                Órgão: ${questions[pos].orgao}
+            </div>
+            <div class="col-sm">
+                Cargo: ${questions[pos].cargo}
+            </div>
+          </div>
+    </div>
+
+
+
+
+
+    <nav class="navbar fixed-bottom navbar-light bg-light">
+    
+        
+      
+        <div id="botoes">
+
+
+
+
+    <div id="info-questao" class="alert alert-light  text-center">
+      <div class="row">
+          <div class="col-sm">
+          
+          <a id="btn-anterior" onclick = "qAnterior()" href="#" tabindex="-1">
+          
+          
+          <div class="btn btn-outline-light text-primary font-italic ">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-double-left" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M8.354 1.646a.5.5 0 0 1 0 .708L2.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
+  <path fill-rule="evenodd" d="M12.354 1.646a.5.5 0 0 1 0 .708L6.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
+</svg>
+          Anterior 
+          
+          
+            </div>
+          </a>
+          
+          </div>
+
+
+
+          <div class="col-sm">
+              <div id="qAcertou" class="text-success"></div>
+              <div id="qErrou" class="text-danger"></div>
+          </div>
+
+
+
+          <div class="col-sm">
+          <button id="btn-responder" class="btn btn-primary" onclick="responder()">Responder</button> 
+          </div>
+
+
+
+          <div class="col-sm">
+            <div id="qCerta" class="text-info"></div>
+          </div>
+
+
+
+          <div class="col-sm">
+          <a id="btn-proxima" onclick = "qProxima()" href="#" tabindex="1">
+          <div class="btn btn-outline-light text-primary font-italic">
+          Próxima 
+          <svg class="" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-double-right" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M3.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L9.293 8 3.646 2.354a.5.5 0 0 1 0-.708z"/>
+  <path fill-rule="evenodd" d="M7.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L13.293 8 7.646 2.354a.5.5 0 0 1 0-.708z"/>
+</svg>
+            </div>
+          </a>
+
+          </div>
+        </div>
+      </div>  
+  </div> 
+      </div>
+      
+      </nav>

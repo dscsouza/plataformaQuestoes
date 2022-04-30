@@ -138,104 +138,113 @@ function exibirQuestão(pos){
 
 
     document.querySelector("#bodyApp").innerHTML=`
-    <div class="container bg-light">
-    <div class="alert alert-warning text-center">Questão ${questions[pos].ID}</div>
+    
+    
+        <nav class="navbar sticky-top navbar-light bg-transparent w-100">
+        <div class="d-flex justify-content-center w-100">
+            <div class="w-100 bg-primary bg-gradient text-center text-white font-weight-light border rounded">
+                Questão ${questions[pos].ID} -
+                Ano: ${questions[pos].ano} -
 
-    <div id="info-questao" class="alert alert-light  text-center">
-        <div class="row">
-            <div class="col-sm">
-                Ano: ${questions[pos].ano}
-            </div>
-            <div class="col-sm">
-                Banca: ${questions[pos].banca}
-            </div>
-            <div class="col-sm">
-                Órgão: ${questions[pos].orgao}
-            </div>
-            <div class="col-sm">
+                Banca: ${questions[pos].banca} -
+
+                Órgão: ${questions[pos].orgao} -
+
                 Cargo: ${questions[pos].cargo}
             </div>
-          </div>
-    </div>
+            </div>
+        </nav>
 
-    <div class="alert alert-light  text-justify text-color-black">
+    <div class="container bg-light">
+
+        <div class="container-fluid alert alert-light  text-justify text-color-black">
         
 
-        <span class="text-justify font-weight-bold margin-bottom-5px">
+        <div class="p-2 shadow-sm text-justify text-dark font-weight-bold mb-2 ml-1">
         ${questions[pos].enunciado}
-        </span>
+        </div>
 
-    <table class="table table-hover">
-        <!-- <thead>
-          <tr>
-            <th scope="col"> </th>
-            <th scope="col"> 
-            </th> 
-          </tr>
-        </thead> -->
-        <tbody>
-          <tr id="a" class="ponteiro" onclick="selecionar(this)" ondblclick="ignorar(this)" ontouchmove="ignorar(this)">
-            <th scope="row">A</th>
-            <td>
-            ${questions[pos].alternativas.a}
-            </td>
-          </tr>
-          <tr id="b" class="ponteiro" onclick="selecionar(this)" ondblclick="ignorar(this)" ontouchmove="ignorar(this)">
-            <th scope="row">B</th>
-            <td>
-            ${questions[pos].alternativas.b}
-            </td>
-          </tr>
-          <tr id="c" class="ponteiro" onclick="selecionar(this)" ondblclick="ignorar(this)" ontouchmove="ignorar(this)">
-            <th scope="row">C</th>
-            <td colspan="2">
-            ${questions[pos].alternativas.c}
-            </td>
-          </tr>
-          <tr id="d" class="ponteiro" onclick="selecionar(this)" ondblclick="ignorar(this)" ontouchmove="ignorar(this)">
-            <th scope="row">D</th>
-            <td colspan="2">
-            ${questions[pos].alternativas.d}
-            </td>
-          </tr>
-          <tr id="e" class="ponteiro" onclick="selecionar(this)" ondblclick="ignorar(this)" ontouchmove="ignorar(this)">
-            <th scope="row">E</th>
-            <td colspan="2">
-            ${questions[pos].alternativas.e}
-            </td>
-          </tr>
-        </tbody>
-      </table>
+        <table class="table table-sm table-hover table-borderless">
+            <tbody>
+                <tr id="a" class="ponteiro" onclick="selecionar(this)" ondblclick="ignorar(this)" ontouchmove="ignorar(this)">
+                    <th scope="row" class="align-middle">A</th>
+                    <td class="">
+                        <div class="">
+                            ${questions[pos].alternativas.a}
+                        </div>
+                    </td>
+                </tr>
+                <tr id="b" class="ponteiro" onclick="selecionar(this)" ondblclick="ignorar(this)" ontouchmove="ignorar(this)">
+                    <th scope="row" class="align-middle">B</th>
+                    <td>
+                    ${questions[pos].alternativas.b}
+                    </td>
+                </tr>
+                <tr id="c" class="ponteiro" onclick="selecionar(this)" ondblclick="ignorar(this)" ontouchmove="ignorar(this)">
+                    <th scope="row" class="align-middle">C</th>
+                    <td colspan="2">
+                    ${questions[pos].alternativas.c}
+                    </td>
+                </tr>
+                <tr id="d" class="ponteiro" onclick="selecionar(this)" ondblclick="ignorar(this)" ontouchmove="ignorar(this)">
+                    <th scope="row" class="align-middle">D</th>
+                    <td colspan="2">
+                    ${questions[pos].alternativas.d}
+                    </td>
+                </tr>
+                <tr id="e" class="ponteiro" onclick="selecionar(this)" ondblclick="ignorar(this)" ontouchmove="ignorar(this)">
+                    <th scope="row" class="align-middle">
+                    <div> E</div>
+                    </th>
+                    <td colspan="2">
+                    ${questions[pos].alternativas.e}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="h-25 d-inline-block">
+            <div id="qAcertou" class="text-success"></div>
+            <div id="qErrou" class="text-danger"></div>
+        </div>
 
-      <div id="botoes">
-    <div id="info-questao" class="alert alert-light  text-center">
-      <div class="row">
-          <div class="col-sm">
-          
+
+        <!--
+        <div class="d-flex justify-content-center text-center">
+        <div class="w-50">
+          <button id="btn-responder" class="btn btn-outline-primary btn-sm" onclick="responder()">Responder</button> 
+          </div>
+        </div>
+        -->
+        
+    </div>    
+
+        
+        <nav class="navbar sticky-bottom navbar-light bg-light bg-gradient">
+    
+        
+      
+       
+
           <a id="btn-anterior" onclick = "qAnterior()" href="#" tabindex="-1">
           <div class="btn btn-outline-light text-primary font-italic ">
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-double-left" viewBox="0 0 16 16">
-  <path fill-rule="evenodd" d="M8.354 1.646a.5.5 0 0 1 0 .708L2.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
-  <path fill-rule="evenodd" d="M12.354 1.646a.5.5 0 0 1 0 .708L6.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
-</svg>
-          Anterior 
-          
-          
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-double-left" viewBox="0 0 16 16">
+        <path fill-rule="evenodd" d="M8.354 1.646a.5.5 0 0 1 0 .708L2.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
+        <path fill-rule="evenodd" d="M12.354 1.646a.5.5 0 0 1 0 .708L6.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
+        </svg>
+                Anterior 
             </div>
           </a>
           
-          </div>
-          <div class="col-sm">
-              <div id="qAcertou" class="text-success"></div>
-              <div id="qErrou" class="text-danger"></div>
-          </div>
-          <div class="col-sm">
-          <button id="btn-responder" class="btn btn-primary" onclick="responder()">Responder</button> 
-          </div>
-          <div class="col-sm">
-            <div id="qCerta" class="text-info"></div>
-          </div>
-          <div class="col-sm">
+
+          <div class="d-flex justify-content-center text-center">
+        
+          <button id="btn-responder" class="btn btn-primary btn-md" onclick="responder()">Responder</button> 
+          
+        </div>
+
+
+
+          
           <a id="btn-proxima" onclick = "qProxima()" href="#" tabindex="1">
           <div class="btn btn-outline-light text-primary font-italic">
           Próxima 
@@ -245,11 +254,10 @@ function exibirQuestão(pos){
 </svg>
             </div>
           </a>
-          </div>
-        </div>
-      </div>  
-  </div> 
-      </div>`
+
+          
+      
+      </nav>`
 
 
 
@@ -303,6 +311,7 @@ function exibirQuestão(pos){
 
       </div>
 
+    <br><br><br>
 
     </div>
 
@@ -328,7 +337,8 @@ function exibirQuestão(pos){
             <div class="col-sm">
                 <button class="btn btn-primary btn-sm" onclick="salvarAnotacao()">Salvar</button>
             </div>
-          </div>  
+          </div>
+          <br><br><br>  
     </div>
   </div>
 </div>
@@ -501,17 +511,13 @@ function responder(){
             selecionar(99)
         }, 420);
     }else{
-        $("#qErrou").text("Errou!")
-        $("#qCerta").text("Resposta certa: " + respostaCerta)
+        $("#qErrou").text("Errou!    -    "+"Resposta certa: " + respostaCerta)
 
         $("#qErrou").fadeOut(2000, ()=>{
             $("#qErrou").text(" ")
             $("#qErrou").show()
         })
-        $("#qCerta").fadeOut(3000, ()=>{
-            $("#qCerta").text(" ")
-            $("#qCerta").show()
-        })
+       
 
         console.log("resposta errada")
         $("#" + respostaAtual).toggleClass("resposta-errada")

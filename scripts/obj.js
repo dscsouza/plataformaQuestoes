@@ -4,6 +4,7 @@ bdComentarios = db.collection(raizComentarios)
 bdAnotacoes = db.collection(raizAnotacoes)
 bdUsuarios = db.collection(raizUsuarios)
 bdIds = db.collection(raizIds)
+idComentarios = []
 
 
 bancoQuestoes = {

@@ -18,14 +18,14 @@ function logar(){
 function selecionar(a){
     questaoSelecionada = a.id
     if (respostaAtual == ''){
-        $("#" + questaoSelecionada).toggleClass("table-active")
+        $("#" + questaoSelecionada).toggleClass("table-info")
         respostaAtual = questaoSelecionada    
     }else if(questaoSelecionada != respostaAtual){
-        $("#" + respostaAtual).toggleClass("table-active")
-        $("#" + questaoSelecionada).toggleClass("table-active")
+        $("#" + respostaAtual).toggleClass("table-info")
+        $("#" + questaoSelecionada).toggleClass("table-info")
         respostaAtual = questaoSelecionada
     } else if (a == 99){
-        $("#" + respostaAtual).toggleClass("table-active")
+        $("#" + respostaAtual).toggleClass("table-info")
         respostaAtual = ''
         respostaAtual = questaoSelecionada
     }
