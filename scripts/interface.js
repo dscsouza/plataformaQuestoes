@@ -9,10 +9,13 @@ listaQuestoes = [];
 // FUNÇÕES DE LOGIN
 
 function logar(){
+    $("#spin").toggleClass("d-none")
     username = document.querySelector("#username").value
     password = document.querySelector("#password").value
     console.log(username, password)
     login(username, password)
+
+    
     
 }
 function selecionar(a){

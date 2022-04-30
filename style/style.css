@@ -48,10 +48,12 @@
 }
 .question:hover .letra{
   background-color: #17a3b883;
-  border-radius: 10%;
+  border-radius: 5px;
   color:white;
-  
+}
 
+.letra{
+  width:10px;
 }
 
 

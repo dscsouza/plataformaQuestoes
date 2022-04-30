@@ -335,7 +335,7 @@ function exibirQuestão(pos){
                 
             </div>
             <div class="col-sm">
-                <button class="btn btn-primary btn-sm" onclick="salvarAnotacao()">Salvar</button>
+                <button class="btn btn-primary btn-sm" onclick="salvarAnotacao()"><span id="spin-anot" class="spinner-border spinner-border-sm mr-1 d-none"></span>Salvar</button>
             </div>
           </div>
           <br><br><br>  
@@ -458,6 +458,8 @@ function exibeAnotacoes(pos){
 
 
 function salvarAnotacao(){
+    console.log("salvando anotação...")
+    $("#spin-anot").toggleClass("d-none")
     anotacoes = document.querySelector("#text-anotacoes").value
     idUser = firebase.auth().currentUser.uid
 
@@ -465,6 +467,12 @@ function salvarAnotacao(){
 db.collection(questoes).doc(idQuestions[questaoAtual])
     .collection('anotacoes').doc(idUser).set({
         anotacao: anotacoes
+    }).then(()=>{
+        $("#spin-anot").toggleClass("d-none")
+        console.log("anotação salvo...")
+    }).catch(err=>{
+        $("#spin-anot").toggleClass("d-none")
+        console.log("Houve um erro ao salvar: " + err)
     })
     
 
