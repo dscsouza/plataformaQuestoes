@@ -2,18 +2,21 @@ respostaAtual = ''
 
 listaQuestoes = [];
 
-darkMode = false;
 
-if (darkMode){
-    document.querySelector("#indexPrincipal").classList.add("bg-dark")
-    document.querySelector("#indexPrincipal").classList.add("text-white")
 
-}else {
-    document.querySelector("#indexPrincipal").classList.add("bg-white")
-    document.querySelector("#indexPrincipal").classList.add("text-black")
 
-}
 
+// if (darkMode){
+    
+//     document.querySelector("#indexPrincipal").classList.toggleClass("bg-dark")
+//     document.querySelector("#indexPrincipal").classList.toggleClass("text-white")
+
+// }else {
+    
+//     document.querySelector("#indexPrincipal").classList.toggleClass("bg-white")
+//     document.querySelector("#indexPrincipal").classList.toggleClass("text-black")
+
+// }
 
 
 

@@ -6,8 +6,13 @@ questions = []
 questaoAtual = 0;
 comments = [];
 
+escuro = localStorage.getItem("darkMode");
 
-if (darkMode){
+
+
+
+
+if (escuro == "true"){
     table = "table-dark text-white"
     textColor = "text-dark"
     textDark = ""
@@ -17,9 +22,11 @@ if (darkMode){
     document.body.style.setProperty('--bg-color-body', 'rgba(0, 0, 0, 0.803)')
     btnPublicar = "btn-outline-light"
     btnNavi = "btn-outline-light"
+
+    console.log("modo escuro ligado", escuro)
     
 
-} else {
+} else if (escuro == "false")  {
     table = "table-sm"
     back = "bg-light"
     textColor = "text-black"
@@ -29,6 +36,8 @@ if (darkMode){
     document.body.style.setProperty('--bg-color-body', 'white')
     btnNavi = "btn-outline-light text-primary"
     btnPublicar = "btn-outline-dark"
+
+    console.log("modo escuro desligado", escuro)
 
     
 
