@@ -19,14 +19,32 @@
 <div class="modal fade" id="interfaceUsuario" tabindex="-1" role="dialog" aria-labelledby="TituloModalLongoExemplo" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="TituloModalLongoExemplo">Usuário</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+      <div class="modal-header text-rigth w-100">
+        <div class="imgcontainer font-italic">
+          <img class="avatar float-lefth" src="./img/img_avatar.png" alt="" srcset="">
+          <div id="nomeUsuario">
+            Nome do usuário
+          </div>
+          <div id="emailUsuario">
+            emailUsuario@email.com
+          </div>
+        </div>
+        
+
+
+
+
+        <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
           <span aria-hidden="true">&times;</span>
-        </button>
+        </button> -->
       </div>
       <div class="modal-body">
-        ...
+        
+        <div class="font-weight-light">
+           Modo Noturno     
+          <input class="switch-check" id="noturno-usuario" type="checkbox" name="noturno User">
+          <label class="switch-label" for="noturno-usuario">Modo Noturno</label>
+      </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
@@ -63,9 +81,7 @@
 <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
 <!-- importando o firestore -->
 <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
-<script src="./scripts/app2.js"></script>
-<script src="./scripts/interface.js"></script>
-<script src="./scripts/quest-script.js"></script>
+
 
 
 <!-- IMPORTANTO O FIREBASE -->
@@ -76,6 +92,9 @@
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
+  <script src="./scripts/app2.js"></script>
+<script src="./scripts/interface.js"></script>
+<script src="./scripts/quest-script.js"></script>
 
 </div>
 </body>

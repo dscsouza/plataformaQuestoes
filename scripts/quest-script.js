@@ -181,11 +181,11 @@ function exibirQuestão(pos){
         <nav class="navbar sticky-top navbar-light bg-transparent w-100">
         
         <div class="d-flex justify-content-center w-100">
-        <nav class="navbar navbar-dark bg-dark">
-    <button class="navbar-toggler" type="button" data-toggle="modal" data-target="#interfaceUsuario" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Alterna navegação">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-  </nav>
+            <nav class="navbar">
+                <button class="navbar-toggler" type="button" onclick="switchBtn()" data-toggle="modal" data-target="#interfaceUsuario" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Alterna navegação">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </nav>
             <div class="w-100 bg-primary bg-gradient text-center text-white font-weight-light border rounded">
                 Questão ${questions[pos].ID} -
                 Ano: ${questions[pos].ano} -
@@ -199,12 +199,12 @@ function exibirQuestão(pos){
             </div>
         </nav>
 
-    <div class="w-100 container ${back}">
+    <div id = "n1" class="w-100 container ${back}">
 
-        <div class="container-fluid alert alert-light text-justify ${back}">
+        <div id="n2" class="container-fluid alert alert-light text-justify ${back}">
         
 
-        <div class="p-2 shadow-sm text-justify ${table} ${textDark} font-weight-bold mb-2 ml-1">
+        <div id= "n3"class="p-2 shadow-sm text-justify ${table} ${textDark} font-weight-bold mb-2 ml-1">
         ${questions[pos].enunciado}
         </div>
 
@@ -270,7 +270,7 @@ function exibirQuestão(pos){
        
 
           <a id="btn-anterior" onclick = "qAnterior()" href="#" tabindex="-1">
-          <div class="btn ${btnNavi} font-italic ">
+          <div id="n4" class="btn ${btnNavi} font-italic ">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-double-left" viewBox="0 0 16 16">
         <path fill-rule="evenodd" d="M8.354 1.646a.5.5 0 0 1 0 .708L2.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
         <path fill-rule="evenodd" d="M12.354 1.646a.5.5 0 0 1 0 .708L6.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
@@ -290,7 +290,7 @@ function exibirQuestão(pos){
 
           
           <a id="btn-proxima" onclick = "qProxima()" href="#" tabindex="1">
-          <div class="btn ${btnNavi} font-italic">
+          <div id="n5" class="btn ${btnNavi} font-italic">
           Próxima 
           <svg class="" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-double-right" viewBox="0 0 16 16">
   <path fill-rule="evenodd" d="M3.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L9.293 8 3.646 2.354a.5.5 0 0 1 0-.708z"/>
@@ -310,7 +310,7 @@ function exibirQuestão(pos){
 
 
       document.querySelector("#anotacaoes-comentario").innerHTML=`
-<div class="container ${back}">
+<div id="n6" class="container ${back}">
   <ul class="nav nav-tabs" id="myTab" role="tablist">
     <li class="nav-item">
       <a class="nav-link active" id="coment-tab" data-toggle="tab" href="#comentarios" role="tab" aria-controls="comentarios" aria-selected="true">
@@ -395,6 +395,7 @@ resgatarComentarios()
 exibeAnotacoes(pos)
 
 
+
 }
 
 
@@ -408,7 +409,7 @@ function exibirComentarios(arrayComment){
 
         
         nodeComentario += `
-        <div class="card border-secondary mb-2 ${textColor}" style="max-width: 100%;">
+        <div class="comentClass card border-secondary mb-2 ${textColor}" style="max-width: 100%;">
           <div class="card-header">${Date(arg.datahora.seconds)}</div>
           <div class="card-body">
             <h5 class="card-title ">${arg.autor}</h5>
@@ -588,7 +589,156 @@ function responder(){
 
    
 
-
-
-
 }
+
+
+document.querySelector("#noturno-usuario").addEventListener("change", ({target}) => {
+    if (target.checked){
+            table1 = "table-sm"
+            table2 = "vazia"
+            back1 = "bg-light"
+            back2 = "vazia"
+            textColor = "text-black"
+            textDark = "text-dark"
+            navQuestion1 = "navbar-light"
+            navQuestion2  = "bg-light"
+            document.body.style.setProperty('--texto-questao', 'black')
+            document.body.style.setProperty('--bg-color-body', 'white')
+            btnNavi1 = "btn-outline-light" 
+            btnNavi2 = "text-primary"
+            btnPublicar = "btn-outline-dark"
+            removeCssEscuro()
+            table1 = "table-dark" 
+            table2 = "text-white"
+            textColor = "text-dark"
+            textDark = "vazia"
+            back1 = "bg-dark" 
+            back2 = "text-white"
+            navQuestion1 = "navbar-dark" 
+            navQuestion2 = "bg-transparent"
+            document.body.style.setProperty('--texto-questao', 'white')
+            document.body.style.setProperty('--bg-color-body', 'rgba(0, 0, 0, 0.803)')
+            btnPublicar = "btn-outline-light"
+            btnNavi1 = "btn-outline-light"
+            btnNavi2 = "vazia"
+            incluirCssEscuro()
+    } else {
+            table1 = "table-dark" 
+            table2 = "text-white"
+            textColor = "text-dark"
+            textDark = "vazia"
+            back1 = "bg-dark" 
+            back2 = "text-white"
+            navQuestion1 = "navbar-dark" 
+            navQuestion2 = "bg-transparent"
+            document.body.style.setProperty('--texto-questao', 'white')
+            document.body.style.setProperty('--bg-color-body', 'rgba(0, 0, 0, 0.803)')
+            btnPublicar = "btn-outline-light"
+            btnNavi1 = "btn-outline-light"
+            btnNavi2 = "vazia"
+            removeCssEscuro()
+            table1 = "table-sm"
+            table2 = "vazia"
+            back1 = "bg-light"
+            back2 = "vazia"
+            textColor = "text-black"
+            textDark = "text-dark"
+            navQuestion1 = "navbar-light"
+            navQuestion2  = "bg-light"
+            document.body.style.setProperty('--texto-questao', 'black')
+            document.body.style.setProperty('--bg-color-body', 'white')
+            btnNavi1 = "btn-outline-light" 
+            btnNavi2 = "text-primary"
+            btnPublicar = "btn-outline-dark"
+            incluirCssEscuro()
+    }
+})
+
+
+
+
+function incluirCssEscuro(){
+    n1 =  document.querySelector("#n1")
+n2 = document.querySelector("#n2")
+n3 = document.querySelector("#n3")
+n4 = document.querySelector("#n4")
+n5 = document.querySelector("#n5")
+n6 = document.querySelector("#n6")
+tableQ = document.querySelector("#tableQuestion")
+navQ = document.querySelector("#navQuestion")
+publiComent = document.querySelector("#publi-coment")
+cardComentarios = document.querySelector(".comentClass")
+
+
+// document.querySelectorAll(".comentClass").forEach((a)=>{a.classList.add("deyvison")})
+
+    n1.classList.add(back1)
+    n1.classList.add(back2)
+    n2.classList.add(back1)
+    n2.classList.add(back2)
+    n3.classList.add(table1)
+    n3.classList.add(table2)
+    n3.classList.add(textDark)
+    n4.classList.add(btnNavi1)
+    n4.classList.add(btnNavi2)
+    n5.classList.add(btnNavi1)
+    n5.classList.add(btnNavi2)
+
+    n6.classList.add(back1)
+    n6.classList.add(back2)
+    tableQ.classList.add(table1)
+    tableQ.classList.add(table2)
+    navQ.classList.add(navQuestion1)
+    navQ.classList.add(navQuestion2)
+    publiComent.classList.add(btnPublicar)
+}
+
+function removeCssEscuro(){
+n1 =  document.querySelector("#n1")
+n2 = document.querySelector("#n2")
+n3 = document.querySelector("#n3")
+n4 = document.querySelector("#n4")
+n5 = document.querySelector("#n5")
+n6 = document.querySelector("#n6")
+tableQ = document.querySelector("#tableQuestion")
+navQ = document.querySelector("#navQuestion")
+publiComent = document.querySelector("#publi-coment")
+cardComentarios = document.querySelector(".comentClass")
+
+
+n1.classList.remove(back1)
+n1.classList.remove(back2)
+n2.classList.remove(back1)
+n2.classList.remove(back2)
+n3.classList.remove(table1)
+n3.classList.remove(table2)
+n3.classList.remove(textDark)
+n4.classList.remove(btnNavi1)
+n4.classList.remove(btnNavi2)
+n5.classList.remove(btnNavi1)
+n5.classList.remove(btnNavi2)
+
+n6.classList.remove(back1)
+n6.classList.remove(back2)
+tableQ.classList.remove(table1)
+tableQ.classList.remove(table2)
+navQ.classList.remove(navQuestion1)
+navQ.classList.remove(navQuestion2)
+publiComent.classList.remove(btnPublicar)
+}
+
+
+
+
+
+
+function switchBtn(){
+    escuro = localStorage.getItem("darkMode")
+    console.log("modal aberto")
+    if (escuro=="true"){
+        document.querySelector("#noturno-usuario").checked = true;
+    } else if (escuro=="false") {
+        document.querySelector("#noturno-usuario").checked = false;
+    }
+
+  }
