@@ -410,7 +410,7 @@ function exibirComentarios(arrayComment){
         
         nodeComentario += `
         <div class="comentClass card border-secondary mb-2 ${textColor}" style="max-width: 100%;">
-          <div class="card-header">${New Date(arg.datahora.seconds)}</div>
+          <div class="card-header">${new Date(arg.datahora.seconds)}</div>
           <div class="card-body">
             <h5 class="card-title ">${arg.autor}</h5>
             <p class="card-text">
