@@ -14,10 +14,11 @@ escuro = localStorage.getItem("darkMode");
     textColor = "text-black"
     textDark = "text-dark"
     navQuestion = "navbar-light bg-light"
-    document.body.style.setProperty('--texto-questao', 'black')
-    document.body.style.setProperty('--bg-color-body', 'white')
     btnNavi = "btn-outline-light text-primary"
     btnPublicar = "btn-outline-dark"
+    document.body.style.setProperty('--texto-questao', 'black')
+    document.body.style.setProperty('--bg-color-body', 'white')
+    
 
     console.log("modo escuro desligado", escuro)
 // FIM DA INCIALIZAÇÃO DAS VARIÁVEIS REFERENTES AO AMBIENTE
@@ -30,10 +31,10 @@ if (escuro == "true"){
     textDark = ""
     back = "bg-dark text-white"
     navQuestion = "navbar-dark bg-transparent"
-    document.body.style.setProperty('--texto-questao', 'white')
-    document.body.style.setProperty('--bg-color-body', 'rgba(0, 0, 0, 0.803)')
     btnPublicar = "btn-outline-light"
     btnNavi = "btn-outline-light"
+    document.body.style.setProperty('--texto-questao', 'white')
+    document.body.style.setProperty('--bg-color-body', 'rgba(0, 0, 0, 0.803)')
 
     console.log("modo escuro ligado", escuro)
     
@@ -603,8 +604,8 @@ document.querySelector("#noturno-usuario").addEventListener("change", ({target})
             textDark = "text-dark"
             navQuestion1 = "navbar-light"
             navQuestion2  = "bg-light"
-            document.body.style.setProperty('--texto-questao', 'black')
-            document.body.style.setProperty('--bg-color-body', 'white')
+            document.body.style.setProperty('--texto-questao', 'white')
+            document.body.style.setProperty('--bg-color-body', 'rgba(0, 0, 0, 0.803)')
             btnNavi1 = "btn-outline-light" 
             btnNavi2 = "text-primary"
             btnPublicar = "btn-outline-dark"
