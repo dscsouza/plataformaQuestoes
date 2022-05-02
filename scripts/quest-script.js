@@ -8,7 +8,19 @@ comments = [];
 
 escuro = localStorage.getItem("darkMode");
 
+// INICIALIZA AS VARIÁVEIS NO MODO CLARO
+    table = "table-sm"
+    back = "bg-light"
+    textColor = "text-black"
+    textDark = "text-dark"
+    navQuestion = "navbar-light bg-light"
+    document.body.style.setProperty('--texto-questao', 'black')
+    document.body.style.setProperty('--bg-color-body', 'white')
+    btnNavi = "btn-outline-light text-primary"
+    btnPublicar = "btn-outline-dark"
 
+    console.log("modo escuro desligado", escuro)
+// FIM DA INCIALIZAÇÃO DAS VARIÁVEIS REFERENTES AO AMBIENTE
 
 
 
@@ -39,7 +51,6 @@ if (escuro == "true"){
 
     console.log("modo escuro desligado", escuro)
 
-    
 
 }
 
@@ -168,7 +179,13 @@ function exibirQuestão(pos){
     
     
         <nav class="navbar sticky-top navbar-light bg-transparent w-100">
+        
         <div class="d-flex justify-content-center w-100">
+        <nav class="navbar navbar-dark bg-dark">
+    <button class="navbar-toggler" type="button" data-toggle="modal" data-target="#interfaceUsuario" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Alterna navegação">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  </nav>
             <div class="w-100 bg-primary bg-gradient text-center text-white font-weight-light border rounded">
                 Questão ${questions[pos].ID} -
                 Ano: ${questions[pos].ano} -

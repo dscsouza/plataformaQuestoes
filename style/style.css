@@ -184,13 +184,14 @@
     left: 3px;
     width: 20px;
     height: 20px;
-    background-color: white;
+    background-color: rgba(0, 0, 0, 0.786);
     border-radius: 90px;
     transition: 0.3s;
 }
 
+
 .switch-check:checked + .switch-label {
-    background-color: rgba(0, 0, 0, 0.752);
+    background-color: rgba(0, 0, 0, 0.267);
 }
 
 .switch-check:checked + .switch-label::after {
@@ -198,6 +199,11 @@
     transform: translateX(-100%);
 }
 
+
+
+
+
 .switch-label:active:after {
     width: 45px;
+    background-color: rgba(175, 110, 56, 0.741);
 }

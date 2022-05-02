@@ -1,7 +1,11 @@
 
+localStorage.clear()
+
+
+document.querySelector("#switch-noturno").checked = false;
 
 document.querySelector("#switch-noturno").addEventListener("change", ({target}) => {
-    target.checked ? modoEscuro(true) : modoEscuro(false)
+    target.checked ? modoEscuro(true) : modoEscuro(false);
 })
 
 
