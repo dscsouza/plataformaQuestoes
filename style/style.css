@@ -12,6 +12,17 @@
   background-color: var(--bg-color-body)
 }
 
+.table-info{
+  color: var(--texto-questao)
+
+
+}
+
+.form-control-personalizado{
+  background-color: gray;
+  color: white;
+}
+
 .container{
      width: 40%;
      margin: auto;

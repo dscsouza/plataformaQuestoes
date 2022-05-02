@@ -1,4 +1,5 @@
-respostaAtual = ''
+var respostaAtual = ' '
+var questaoSelecionada = ' '
 
 listaQuestoes = [];
 
@@ -34,17 +35,17 @@ function logar(){
 }
 function selecionar(a){
     questaoSelecionada = a.id
-    if (respostaAtual == ''){
+    if (respostaAtual == ' ' & a != 99){
         $("#" + questaoSelecionada).toggleClass(`table-info ${textColor}`)
         respostaAtual = questaoSelecionada    
-    }else if(questaoSelecionada != respostaAtual){
+    }else if(questaoSelecionada != respostaAtual & a != 99){
         $("#" + respostaAtual).toggleClass(`table-info ${textColor}`)
         $("#" + questaoSelecionada).toggleClass(`table-info ${textColor}`)
         respostaAtual = questaoSelecionada
     } else if (a == 99){
         $("#" + respostaAtual).toggleClass(`table-info ${textColor}`)
-        respostaAtual = ''
-        respostaAtual = questaoSelecionada
+        respostaAtual = ' '
+        questaoSelecionada = ' '
     }
     console.log(a.id)
     // document.querySelector(a.id).toggleClass()

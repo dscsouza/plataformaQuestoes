@@ -11,14 +11,15 @@ escuro = localStorage.getItem("darkMode");
 // INICIALIZA AS VARIÁVEIS NO MODO CLARO
     table = "table-sm"
     back = "bg-light"
-    textColor = "text-black"
+    textColor = "text-dark"
     textDark = "text-dark"
     navQuestion = "navbar-light bg-light"
     btnNavi = "btn-outline-light text-primary"
     btnPublicar = "btn-outline-dark"
     document.body.style.setProperty('--texto-questao', 'black')
     document.body.style.setProperty('--bg-color-body', 'white')
-    
+    styleTextArea = " "
+    cardsComent = "max-width: 100%;"
 
     console.log("modo escuro desligado", escuro)
 // FIM DA INCIALIZAÇÃO DAS VARIÁVEIS REFERENTES AO AMBIENTE
@@ -35,6 +36,8 @@ if (escuro == "true"){
     btnNavi = "btn-outline-light"
     document.body.style.setProperty('--texto-questao', 'white')
     document.body.style.setProperty('--bg-color-body', 'rgba(0, 0, 0, 0.803)')
+    styleTextArea ="background-color: darkgrey; color:white;"
+    cardsComent = "max-width: 100%; background-color: darkgrey; color:white;"
 
     console.log("modo escuro ligado", escuro)
     
@@ -49,6 +52,8 @@ if (escuro == "true"){
     document.body.style.setProperty('--bg-color-body', 'white')
     btnNavi = "btn-outline-light text-primary"
     btnPublicar = "btn-outline-dark"
+    styleTextArea =" "
+    cardsComent = "max-width: 100%;"
 
     console.log("modo escuro desligado", escuro)
 
@@ -174,7 +179,7 @@ auth.onAuthStateChanged(user=>{
 
 function exibirQuestão(pos){
 
-
+    
 
     document.querySelector("#bodyApp").innerHTML=`
     
@@ -345,7 +350,7 @@ function exibirQuestão(pos){
     
 
       <div class="input-group mb-2">
-        <textarea id="coment" class="form-control" aria-label="Digite seu comentário aqui..." placeholder="Digite seu comentário aqui..."></textarea>
+        <textarea id="coment" class="form-control" style="${styleTextArea}" aria-label="Digite seu comentário aqui..."  placeholder="Digite seu comentário aqui..."></textarea>
         <div class="input-group-append">
           <button id="publi-coment" class="btn ${btnPublicar} btn-sm" onclick="publicarComentario()">Publicar</button>
         </div>            
@@ -363,7 +368,7 @@ function exibirQuestão(pos){
     <div class="tab-pane fade" id="anotacoes" role="tabpanel" aria-labelledby="anot-tab">
       <!-- ANOTAÇÕES  -->
       <div class="input-group mb-1">
-          <textarea id="text-anotacoes" class="form-control border-top-0" aria-label="Suas anotações..." rows="5"></textarea>
+          <textarea id="text-anotacoes" class="form-control border-top-0" style="${styleTextArea}"  aria-label="Suas anotações..." rows="5"></textarea>
       </div>
       <!-- BOTÃO SALVAR ANOTAÇÃO -->
         <div class="row">
@@ -391,6 +396,8 @@ function exibirQuestão(pos){
    </div>
 </div>`
 
+ respostaAtual = ' '
+ questaoSelecionada = ' '
 
 resgatarComentarios()
 exibeAnotacoes(pos)
@@ -410,7 +417,7 @@ function exibirComentarios(arrayComment){
 
         
         nodeComentario += `
-        <div class="comentClass card border-secondary mb-2 ${textColor}" style="max-width: 100%;">
+        <div class="comentClass card border-secondary mb-2 ${textColor}" style="${cardsComent}">
           <div class="card-header">${new Date(arg.datahora.seconds)}</div>
           <div class="card-body">
             <h5 class="card-title ">${arg.autor}</h5>
@@ -537,11 +544,13 @@ function questaoAleatoria(){
 }
 
 function qAnterior(){
+    
     questaoAtual --
     exibirQuestão(questaoAtual)
 }
 
 function qProxima(){
+
     idQuestions.length
     questaoAtual++
     exibirQuestão(questaoAtual)
@@ -623,6 +632,12 @@ document.querySelector("#noturno-usuario").addEventListener("change", ({target})
             btnNavi2 = "vazia"
             incluirCssEscuro()
             table = "table-dark text-white"
+            document.querySelector("#text-anotacoes").style.cssText = "background-color: darkgrey; color:white;"
+            document.querySelector("#coment").style.cssText = "background-color: darkgrey; color:white;"
+            document.querySelectorAll(".comentClass").forEach(a=>{a.style = "max-width: 100%;background-color: darkgrey; color:white;"})
+            
+            // .then(arg=>{console.log("estilo dos comentários alterados...")}).catch(err=>{console.log("ainda não temos comentários...")})
+            
             //reseta as variávies para a próxima questão
             textColor = "text-dark"
             textDark = ""
@@ -630,8 +645,10 @@ document.querySelector("#noturno-usuario").addEventListener("change", ({target})
             navQuestion = "navbar-dark bg-transparent"
             btnPublicar = "btn-outline-light"
             btnNavi = "btn-outline-light"
+            cardsComent = "max-width: 100%; background-color: darkgrey; color:white;"
+            styleTextArea = "background-color: darkgrey; color:white;"
     } else {
-        localStorage.setItem("darkMode", "false");
+            localStorage.setItem("darkMode", "false");
             table1 = "table-dark" 
             table2 = "text-white"
             textColor = "text-dark"
@@ -658,6 +675,11 @@ document.querySelector("#noturno-usuario").addEventListener("change", ({target})
             btnNavi2 = "text-primary"
             btnPublicar = "btn-outline-dark"
             incluirCssEscuro()
+            document.querySelector("#text-anotacoes").style.cssText = " "
+            document.querySelector("#coment").style.cssText = " "
+            document.querySelectorAll(".comentClass").forEach(a=>{a.style = "max-width: 100%;"})
+            // .then().catch(err=>{console.log("ainda não temos comentários...")})
+            
 
             //reseta as variáveis para próxim questão
             table = "table-sm"
@@ -667,6 +689,8 @@ document.querySelector("#noturno-usuario").addEventListener("change", ({target})
             navQuestion = "navbar-light bg-light"
             btnNavi = "btn-outline-light text-primary"
             btnPublicar = "btn-outline-dark"
+            cardsComent = "max-width: 100%;"
+            styleTextArea = " "
     }
 })
 
