@@ -181,7 +181,7 @@ function exibirQuestão(pos){
         <nav class="navbar sticky-top navbar-light bg-transparent w-100">
         
         <div class="d-flex justify-content-center w-100">
-            <nav class="navbar">
+            <nav class="navbar bg-semitransparente">
                 <button class="navbar-toggler" type="button" onclick="switchBtn()" data-toggle="modal" data-target="#interfaceUsuario" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Alterna navegação">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -594,6 +594,7 @@ function responder(){
 
 document.querySelector("#noturno-usuario").addEventListener("change", ({target}) => {
     if (target.checked){
+            localStorage.setItem("darkMode", "true");
             table1 = "table-sm"
             table2 = "vazia"
             back1 = "bg-light"
@@ -616,13 +617,20 @@ document.querySelector("#noturno-usuario").addEventListener("change", ({target})
             back2 = "text-white"
             navQuestion1 = "navbar-dark" 
             navQuestion2 = "bg-transparent"
-            document.body.style.setProperty('--texto-questao', 'white')
-            document.body.style.setProperty('--bg-color-body', 'rgba(0, 0, 0, 0.803)')
             btnPublicar = "btn-outline-light"
             btnNavi1 = "btn-outline-light"
             btnNavi2 = "vazia"
             incluirCssEscuro()
+            table = "table-dark text-white"
+            //reseta as variávies para a próxima questão
+            textColor = "text-dark"
+            textDark = ""
+            back = "bg-dark text-white"
+            navQuestion = "navbar-dark bg-transparent"
+            btnPublicar = "btn-outline-light"
+            btnNavi = "btn-outline-light"
     } else {
+        localStorage.setItem("darkMode", "false");
             table1 = "table-dark" 
             table2 = "text-white"
             textColor = "text-dark"
@@ -631,8 +639,6 @@ document.querySelector("#noturno-usuario").addEventListener("change", ({target})
             back2 = "text-white"
             navQuestion1 = "navbar-dark" 
             navQuestion2 = "bg-transparent"
-            document.body.style.setProperty('--texto-questao', 'white')
-            document.body.style.setProperty('--bg-color-body', 'rgba(0, 0, 0, 0.803)')
             btnPublicar = "btn-outline-light"
             btnNavi1 = "btn-outline-light"
             btnNavi2 = "vazia"
@@ -651,6 +657,15 @@ document.querySelector("#noturno-usuario").addEventListener("change", ({target})
             btnNavi2 = "text-primary"
             btnPublicar = "btn-outline-dark"
             incluirCssEscuro()
+
+            //reseta as variáveis para próxim questão
+            table = "table-sm"
+            back = "bg-light"
+            textColor = "text-black"
+            textDark = "text-dark"
+            navQuestion = "navbar-light bg-light"
+            btnNavi = "btn-outline-light text-primary"
+            btnPublicar = "btn-outline-dark"
     }
 })
 
