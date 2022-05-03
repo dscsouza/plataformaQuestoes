@@ -209,8 +209,8 @@ function injetarQuestoesTeste(qtd){
 
     for(let i=0; i<qtd; i++){
     
-    
-    db.collection(questoes).doc(i).set(
+    numeroQuestao = i.toString()
+    db.collection(questoes).doc(numeroQuestao).set(
         {
             "ID": numeroQuestao,
             "cargo": "Psicólogo",
