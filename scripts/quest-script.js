@@ -406,19 +406,37 @@ exibeAnotacoes(pos)
 
 }
 
+meses = ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho'
+        ,'Agosto','Setembro','Outubro','Novembro','Dezembro']
 
+semana = ['domingo','segunda-feira','terça-feira','quarta-feira'
+        ,'quinta-feira','sexta-feira','sábado']
 
+function addZero(i) {
+    if (i < 10) {i = "0" + i}
+    return i;
+}
 
 function exibirComentarios(arrayComment){
     nodeComentario = " "
 
     arrayComment.forEach((arg)=>{
         console.log(arg)
+        console.log(arg.datahora.seconds)
+        dataPublicacao = new Date(arg.datahora.seconds *1000)
+
+        let diaSemana = semana[dataPublicacao.getDay()]
+        let dia = dataPublicacao.getDate()
+        let mes = meses[dataPublicacao.getMonth()]
+        let ano = dataPublicacao.getFullYear()
+
+        let hora = addZero(dataPublicacao.getHours())
+        let minuto = addZero(dataPublicacao.getMinutes())
 
         
         nodeComentario += `
         <div class="comentClass card border-secondary mb-2 ${textColor}" style="${cardsComent}">
-          <div class="card-header">${new Date(arg.datahora.seconds)}</div>
+          <div class="card-header small">Publicado ${diaSemana} dia ${dia} de ${mes} de ${ano} às ${hora}:${minuto}h</div>
           <div class="card-body">
             <h5 class="card-title ">${arg.autor}</h5>
             <p class="card-text">
