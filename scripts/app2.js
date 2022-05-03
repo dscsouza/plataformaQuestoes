@@ -201,3 +201,38 @@ function alerta(mensagem, dismiss, tipo){
     
     
 }
+
+
+
+
+function injetarQuestoesTeste(qtd){
+
+    for(let i=100; i<qtd; i++){
+    numeroQuestao = "M0"+i
+    
+    db.collection(questoes).doc(numeroQuestao).set(
+        {
+            "ID": numeroQuestao,
+            "cargo": "Psicólogo",
+            "orgao": `Prefeitura de Paulínia/SP ${numeroQuestao}`,
+            "ano": 2021,
+            "idUser": "testando o campo anotações",
+            "banca": "FGV",
+            "alternativas": {
+              "gabarito": "d",
+              "b": "a lei criará varas da Justiça do Trabalho, podendo, nas comarcas não abrangidas por sua jurisdição, atribuí-la aos Juízes Federais, com recurso para o respectivo Tribunal Regional Federal.",
+              "e": "a Escola Nacional de Formação e Aperfeiçoamento de Magistrados do Trabalho e o Conselho Superior da Justiça do Trabalho funcionarão junto ao Conselho Nacional de Justiça, vinculado ao Supremo Tribunal Federal.",
+              "d": "o Tribunal Superior do Trabalho compor-se-á de 27 Ministros, escolhidos dentre brasileiros com mais de 35 e menos de 65 anos, nomeados pelo Presidente da República após aprovação pela maioria absoluta do Senado Federal.",
+              "a": "o Tribunal Superior do Trabalho será composto por juízes dos Tribunais Regionais, oriundos da magistratura, indicados pelo colégio de Presidentes e Corregedores dos Tribunais Regionais, além de 1/5 oriundo da advocacia e Ministério Público do Trabalho e 1/5 indicados pelas confederações sindicais.",
+              "c": "são órgãos da Justiça do Trabalho as Comissões de Conciliação Prévia, as Varas do Trabalho, os Tribunais Regionais do Trabalho e o Tribunal Superior do Trabalho."
+            },
+            "enunciado": `${numeroQuestao}Em consonância com os ditames constitucionais quanto à organização e competência da Justiça do Trabalho:`
+        }).then(()=>{
+                 console.log(`documento ${numeroQuestao} inserido com sucesso...`)
+             }).catch(err=>{
+                 console.log(err);
+             })
+
+
+    }
+}

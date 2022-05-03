@@ -430,7 +430,7 @@ function exibirComentarios(arrayComment){
         return +(a.value > b.value) || +(a.value === b.value) - 1;
     });
     //retorna em result, o array comments organizado
-    //em ordem crescente
+    //em ordem crescente, levando em consideração os índices em mapped
     var result = mapped.map(function(el){
         return comments[el.index];
     });

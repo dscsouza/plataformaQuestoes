@@ -1,0 +1,95 @@
+modo escuro desligado true quest-script.js:24:13
+modo escuro ligado true quest-script.js:42:13
+Object { ID: "M0001", cargo: "Psicólogo", orgao: "Prefeitura de Paulínia/SP", ano: 2021, idUser: "testando o campo anotações", banca: "FGV", alternativas: {…}, comment: (2) […], enunciado: "Em consonância com os ditames constitucionais quanto à organização e competência da Justiça do Trabalho:" }
+quest-script.js:78:21
+Object { autor: "adm2@adm.com", datahora: {…}, comentario: "primeiro aqui" }
+quest-script.js:439:17
+1651336487 quest-script.js:440:17
+Object { comentario: "Comentário noturno ", autor: "adm@adm.com", datahora: {…} }
+quest-script.js:439:17
+1651337399 quest-script.js:440:17
+Object { autor: "adm@adm.com", comentario: "Uhnsgj ", datahora: {…} }
+quest-script.js:439:17
+1651337915 quest-script.js:440:17
+Object { comentario: "Ana Luísa lima ", datahora: {…}, autor: "adm@adm.com" }
+quest-script.js:439:17
+1651338802 quest-script.js:440:17
+Object { datahora: {…}, autor: "adm2@adm.com", comentario: "test" }
+quest-script.js:439:17
+1651345841 quest-script.js:440:17
+Object { autor: "adm@adm.com", comentario: "Nhuck. ", datahora: {…} }
+quest-script.js:439:17
+1651470465 quest-script.js:440:17
+Object { comentario: "2 e maio 19:42h", autor: "adm2@adm.com", datahora: {…} }
+quest-script.js:439:17
+1651534978 quest-script.js:440:17
+Object { autor: "adm2@adm.com", datahora: {…}, comentario: "ordem cronológica 2-05-2022 21:47h" }
+quest-script.js:439:17
+1651542484 quest-script.js:440:17
+Object { anotacao: "questão já respondida\n\ndificuldade média123156465123abd 123\nJgysj hjkhjkjhkhjkhj fefefefe" }
+quest-script.js:529:21
+Banco de dados lido com sucesso... quest-script.js:536:16
+Autor: adm2@adm.com - comentário: testar - FALTA IMPLEMENTAR A FUNÇÃO PARA SALVAR O COMENTÁRIO NO BANCO DE DADOS quest-script.js:477:13
+Object { comentario: "primeiro aqui", datahora: {…}, autor: "adm2@adm.com" }
+quest-script.js:439:17
+1651336487 quest-script.js:440:17
+Object { autor: "adm@adm.com", comentario: "Comentário noturno ", datahora: {…} }
+quest-script.js:439:17
+1651337399 quest-script.js:440:17
+Object { autor: "adm@adm.com", datahora: {…}, comentario: "Uhnsgj " }
+quest-script.js:439:17
+1651337915 quest-script.js:440:17
+Object { datahora: {…}, comentario: "Ana Luísa lima ", autor: "adm@adm.com" }
+quest-script.js:439:17
+1651338802 quest-script.js:440:17
+Object { autor: "adm2@adm.com", comentario: "test", datahora: {…} }
+quest-script.js:439:17
+1651345841 quest-script.js:440:17
+Object { datahora: {…}, autor: "adm@adm.com", comentario: "Nhuck. " }
+quest-script.js:439:17
+1651470465 quest-script.js:440:17
+Object { datahora: {…}, comentario: "2 e maio 19:42h", autor: "adm2@adm.com" }
+quest-script.js:439:17
+1651534978 quest-script.js:440:17
+Object { comentario: "ordem cronológica 2-05-2022 21:47h", autor: "adm2@adm.com", datahora: {…} }
+quest-script.js:439:17
+1651542484 quest-script.js:440:17
+Object { datahora: {…}, autor: "adm2@adm.com", comentario: "testar" }
+quest-script.js:439:17
+1651542965 quest-script.js:440:17
+modal aberto quest-script.js:810:13
+a interface.js:50:13
+
+
+
+
+
+{
+  "ID": "M0001",
+  "cargo": "Psicólogo",
+  "orgao": "Prefeitura de Paulínia/SP",
+  "ano": 2021,
+  "idUser": "testando o campo anotações",
+  "banca": "FGV",
+  "alternativas": {
+    "gabarito": "d",
+    "b": "a lei criará varas da Justiça do Trabalho, podendo, nas comarcas não abrangidas por sua jurisdição, atribuí-la aos Juízes Federais, com recurso para o respectivo Tribunal Regional Federal.",
+    "e": "a Escola Nacional de Formação e Aperfeiçoamento de Magistrados do Trabalho e o Conselho Superior da Justiça do Trabalho funcionarão junto ao Conselho Nacional de Justiça, vinculado ao Supremo Tribunal Federal.",
+    "d": "o Tribunal Superior do Trabalho compor-se-á de 27 Ministros, escolhidos dentre brasileiros com mais de 35 e menos de 65 anos, nomeados pelo Presidente da República após aprovação pela maioria absoluta do Senado Federal.",
+    "a": "o Tribunal Superior do Trabalho será composto por juízes dos Tribunais Regionais, oriundos da magistratura, indicados pelo colégio de Presidentes e Corregedores dos Tribunais Regionais, além de 1/5 oriundo da advocacia e Ministério Público do Trabalho e 1/5 indicados pelas confederações sindicais.",
+    "c": "são órgãos da Justiça do Trabalho as Comissões de Conciliação Prévia, as Varas do Trabalho, os Tribunais Regionais do Trabalho e o Tribunal Superior do Trabalho."
+  },
+  "comment": [
+    {
+      "datahora": "datahora1",
+      "autor": "autor1",
+      "comentario": "comentario1"
+    },
+    {
+      "datahora": "datahora2",
+      "comentario": "comentario2",
+      "autor": "autor2"
+    }
+  ],
+  "enunciado": "Em consonância com os ditames constitucionais quanto à organização e competência da Justiça do Trabalho:"
+}
