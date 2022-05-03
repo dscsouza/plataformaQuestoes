@@ -210,7 +210,7 @@ function injetarQuestoesTeste(qtd){
     for(let i=0; i<qtd; i++){
     
     
-    db.collection(questoes).doc(numeroQuestao).set(
+    db.collection(questoes).doc(i).set(
         {
             "ID": numeroQuestao,
             "cargo": "Psicólogo",
