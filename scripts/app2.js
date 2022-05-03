@@ -208,7 +208,7 @@ function alerta(mensagem, dismiss, tipo){
 function injetarQuestoesTeste(qtd){
 
     for(let i=0; i<qtd; i++){
-    numeroQuestao = "M0"+i
+    
     
     db.collection(questoes).doc(numeroQuestao).set(
         {
