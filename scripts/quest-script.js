@@ -420,7 +420,22 @@ function addZero(i) {
 function exibirComentarios(arrayComment){
     nodeComentario = " "
 
-    arrayComment.forEach((arg)=>{
+    //cria um array secundário que armazena os segundos e os índices
+    var mapped = arrayComment.map(function(el, i) {
+        return { index: i, value: el.datahora.seconds};
+    })
+    //ordena o array secundário pelos valores em ordem crescente
+    //mantendo os índices atrelados a cada valor
+    mapped.sort(function(a, b) {
+        return +(a.value > b.value) || +(a.value === b.value) - 1;
+    });
+    //retorna em result, o array comments organizado
+    //em ordem crescente
+    var result = mapped.map(function(el){
+        return comments[el.index];
+    });
+
+    result.forEach((arg)=>{
         console.log(arg)
         console.log(arg.datahora.seconds)
         dataPublicacao = new Date(arg.datahora.seconds *1000)
