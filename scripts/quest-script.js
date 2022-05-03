@@ -188,7 +188,7 @@ function exibirQuestão(pos){
         
         <div class="d-flex justify-content-center w-100">
             <nav class="navbar bg-semitransparente">
-                <button class="navbar-toggler" type="button" onclick="switchBtn()" data-toggle="modal" data-target="#interfaceUsuario" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Alterna navegação">
+                <button class="navbar-toggler" type="button" onclick="userMenu()" data-toggle="modal" data-target="#interfaceUsuario" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Alterna navegação">
                     <span class="navbar-toggler-icon"></span>
                 </button>
             </nav>
@@ -805,9 +805,17 @@ publiComent.classList.remove(btnPublicar)
 
 
 
-function switchBtn(){
+function userMenu(){
     escuro = localStorage.getItem("darkMode")
     console.log("modal aberto")
+    idUser = firebase.auth().currentUser.uid
+    document.querySelector("#emailUsuario").innerHTML = `Email: ${idUser}`
+ 
+    
+    
+    
+    //ajusta o botão darkMode para posição correta
+    //com base na seleção do usuário
     if (escuro=="true"){
         document.querySelector("#noturno-usuario").checked = true;
     } else if (escuro=="false") {
