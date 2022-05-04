@@ -66,7 +66,7 @@ if (escuro == "true"){
 function allIdQuestion(){
     
     
-        db.collection(questoes).get().then(snapshot=>{
+        db.collection(questoes).limit(5).get().then(snapshot=>{
             snapshot.forEach((docs) =>{
                idQuestions.push(docs.id);
                questions.push(docs.data())
