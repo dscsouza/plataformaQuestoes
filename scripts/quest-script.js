@@ -62,11 +62,12 @@ if (escuro == "true"){
 
 
 
-
+//função que ler o banco de dados e trás as informações das questões
 function allIdQuestion(){
     
-    
-        db.collection(questoes).limit(5).get().then(snapshot=>{
+        //rotina que consulta o banco de dados do firebase
+        //para fins de testes, está limitada a trazer somente duas questões
+        db.collection(questoes).limit(2).get().then(snapshot=>{
             snapshot.forEach((docs) =>{
                idQuestions.push(docs.id);
                questions.push(docs.data())
@@ -90,51 +91,9 @@ function allIdQuestion(){
     
 }
 
-function buildObjQuestao(id){
-    i = 0;
-    let docRef = db.collection(questoes).doc(id);
-    // retorna os dados da questão
-    docRef.get().then((doc)=>{
-        qt = doc.data()
-        questao = {
-            id: qt.ID,
-            ano: qt.ano,
-            banca: qt.banca,
-            cargo: qt.cargo,
-            orgao: qt.orgao,
-            enunciado: qt.enunciado,
-            alternativas: {
-                a: qt.alternativas.a,
-                b: qt.alternativas.b,
-                c: qt.alternativas.c,
-                d: qt.alternativas.d,
-                e: qt.alternativas.e,
-                gabarito: qt.alternativas.gabarito
-            }
-        }
-    })
-    return questao;
-}
 
-//constrói um array com os comentários
-//array comentario[i]
-function buildObjComment(id){
-    i = 0;
-    comentario = [];
-    let docRef = db.collection(questoes).doc(id);
-    // retorna os dados da questão
-    docRef.get().then((doc)=>{
-        qt = doc.data().comentarios
-        comentario[i] = {
-            datahora: qt.i.datahora,
-            autor: qt.i.autor,
-            comentario: qt.i.comentario
-        }
-        i++;
-    })
-}
-
-
+//chama a função que consulta o banco de dados e cria os objetos contendo as questões, que serão usados pelas demais funções
+allIdQuestion()
 
 
 //VERIFICA O USUÁRIO LOGADO
@@ -159,7 +118,7 @@ function imprimeID(){
 
 }
 
-allIdQuestion()
+
 
 //AO ABRIR A PÁGINA QUESTÕES, VERIFICA QUAL USUÁRIO EST[A LOGADO E SALVA NA 
 //VARIÁVEL usuarioLogado
