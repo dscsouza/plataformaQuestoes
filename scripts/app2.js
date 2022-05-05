@@ -20,11 +20,13 @@ firebase.initializeApp(firebaseConfig);
 
 const db = firebase.firestore();
 const auth = firebase.auth();
-const questoes = "bancoQuestoes";
+const questoes = "bancoQuestoes"; //seta a collection onde são armazenadas as questões
+const usuarios = "usuarios"; //seta a collection onde são armazenadas os dados do usuário
 const raizComentarios = "comentarios"
 const raizAnotacoes = "anotacoes"
 const raizUsuarios = "usuarios"
 const raizIds = "ids"
+var configs = [];
 
 let emailCurrentUser;
 
@@ -235,4 +237,81 @@ function injetarQuestoesTeste(qtd){
 
 
     }
+}
+
+
+
+
+
+
+
+//TESTES
+
+function questaoResolvida(certoErrado){
+    
+    idUser = firebase.auth().currentUser.uid //recupera o uID do usuário
+    
+    //utiliza o método set(), caso o documento com uID  do usuário não tenha sido criado, ele cria nesse momento
+   
+
+
+                 db.collection("usuarios").doc(idUser)
+                 .collection("questoes").doc((questions[questaoAtual].ID).toString()).set({
+                    id:  questions[questaoAtual].ID,
+                    conceito: certoErrado,
+                 }).then(()=>{
+                     resgatarComentarios()
+                     alerta("Questão registrada.", false, "info")
+                 }).catch(err=>{
+                     alerta("Ocorreu um erro. Verifique sua conexão com a internet.", false, "danger")
+                 })
+
+
+
+}
+
+function gravaDarkMode(onOff){
+    
+    idUser = firebase.auth().currentUser.uid //recupera o uID do usuário
+    
+    //utiliza o método set(), caso o documento com uID  do usuário não tenha sido criado, ele cria nesse momento
+                 db.collection("usuarios").doc(idUser)
+                 .collection("configs").doc("interface").set({
+                    darkmode:  onOff,
+                 }).then(()=>{
+                    alerta("Configuração salva", false, "info")
+                 }).catch(err=>{
+                     alerta("Ocorreu um erro. Verifique sua conexão com a internet.", false, "danger")
+                 })
+
+}
+
+//falta implementar alteração do seletor
+function resgataConfigs(){
+    
+    idUser = firebase.auth().currentUser.uid
+
+    a = db.collection("usuarios")
+        .doc(idUser)
+        .collection("configs")
+        .get().then((config)=>{
+                     config.forEach(doc => {
+                        configs.push(doc.data())
+                        
+                     })                    
+                 }).then(()=>{
+                    
+                     alerta("Configuração recuperada", false, "info")
+                     
+
+                 }).catch(err=>{
+                     alerta("Ocorreu um erro. Verifique sua conexão com a internet.", false, "danger")
+                 })
+    
+                //  
+    Promise.all([a]).then(()=>{
+        console.log(configs[0])
+        escuro = localStorage.getItem(configs[0].darkmode)
+    })
+
 }

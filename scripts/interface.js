@@ -63,5 +63,6 @@ function ignorar(a){
 function exibirDadosUser(){
     idUser = firebase.auth().currentUser.uid
     
+    
 }
 

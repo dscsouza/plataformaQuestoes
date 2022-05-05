@@ -7,7 +7,7 @@ questaoAtual = 0;
 comments = [];
 aleatoria = 1
 
-escuro = localStorage.getItem("darkMode");
+escuro = localStorage.getItem("darkMode")
 
 // INICIALIZA AS VARIÁVEIS NO MODO CLARO
     table = "table-sm"
@@ -76,7 +76,7 @@ function allIdQuestion(){
             //inclui a próxima questão no array questions
             questions.push(doc.data()) 
             //mostra o jSon da questão no console
-            console.log(questions[0])
+            console.log(questions[questaoAtual])
             //exibe a questão atual, inicialmente esse valor é 0
             exibirQuestao(questaoAtual)
 
@@ -597,7 +597,7 @@ function responder(){
             $("#qAcertou").show()
         })
 
-        
+        questaoResolvida("certa")
         $("#" + respostaAtual).toggleClass("resposta-certa")
         setTimeout(() => {
             $("#" + respostaAtual).removeClass("resposta-certa")
@@ -610,6 +610,8 @@ function responder(){
             $("#qErrou").text(" ")
             $("#qErrou").show()
         })
+
+        questaoResolvida("errada")
        
 
         console.log("resposta errada")
@@ -673,6 +675,13 @@ document.querySelector("#noturno-usuario").addEventListener("change", ({target})
             btnNavi = "btn-outline-light"
             cardsComent = "max-width: 100%; background-color: darkgrey; color:white;"
             styleTextArea = "background-color: darkgrey; color:white;"
+
+
+            gravaDarkMode("on")
+
+
+
+
     } else {
             localStorage.setItem("darkMode", "false");
             table1 = "table-dark" 
@@ -717,6 +726,7 @@ document.querySelector("#noturno-usuario").addEventListener("change", ({target})
             btnPublicar = "btn-outline-dark"
             cardsComent = "max-width: 100%;"
             styleTextArea = " "
+            gravaDarkMode("off")
     }
 })
 
