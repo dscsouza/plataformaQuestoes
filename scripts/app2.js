@@ -207,12 +207,12 @@ function alerta(mensagem, dismiss, tipo){
 
 function injetarQuestoesTeste(qtd){
 
-    for(let i=0; i<qtd; i++){
+    for(let i=1; i<qtd; i++){
     
     numeroQuestao = i.toString()
     db.collection(questoes).doc(numeroQuestao).set(
         {
-            "ID": numeroQuestao,
+            "ID": i,
             "cargo": "Psicólogo",
             "orgao": `Prefeitura de Paulínia/SP ${numeroQuestao}`,
             "ano": 2021,

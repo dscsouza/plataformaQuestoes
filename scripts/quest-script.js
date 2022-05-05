@@ -5,6 +5,7 @@ questao = { }
 questions = []
 questaoAtual = 0;
 comments = [];
+aleatoria = 1
 
 escuro = localStorage.getItem("darkMode");
 
@@ -61,12 +62,42 @@ if (escuro == "true"){
 }
 
 
+//chama a função que consulta o banco de dados e cria os objetos contendo as questões, que serão usados pelas demais funções
 
-//função que ler o banco de dados e trás as informações das questões
+
+
+exibirQuestaoAleatoria()
+
+
+//função que lÊ o banco de dados e trás as informações das questões
 function allIdQuestion(){
+
+        db.collection(questoes).doc(aleatoria.toString()).get().then(doc=>{
+            //inclui a próxima questão no array questions
+            questions.push(doc.data()) 
+            //mostra o jSon da questão no console
+            console.log(questions[0])
+            //exibe a questão atual, inicialmente esse valor é 0
+            exibirQuestao(questaoAtual)
+
+            //a variável  "questaoAtual" é incrementada
+            // ou decrementada quando o usuário clica
+            //em próxima ou anterior
+            
+        }).
+        catch(error=>{
+            console.log("Erro ao acesar o banco de dados: ", error)
+
+            document.querySelector('#alertTopContainer').innerHTML = `<div id="alertTop" class=" float-left alert alert-danger fade show  fixed-top shadow " role="alert"> ${error.message}. <a href="./index.html">Voltar para tela de login</a><button type="button" class="close  text-right" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></div>`
+        });
+
+
+
+        
     
         //rotina que consulta o banco de dados do firebase
         //para fins de testes, está limitada a trazer somente duas questões
+        /*
         db.collection(questoes).limit(2).get().then(snapshot=>{
             snapshot.forEach((docs) =>{
                idQuestions.push(docs.id);
@@ -77,7 +108,7 @@ function allIdQuestion(){
             // CONSTRUIR A INTERFACE AQUI
             // qAtual = buildObjQuestao(idQuestions[1]);
             console.log(questions[0])
-            exibirQuestão(questaoAtual)
+            exibirQuestao(questaoAtual)
 
 
 
@@ -88,12 +119,14 @@ function allIdQuestion(){
 
             document.querySelector('#alertTopContainer').innerHTML = `<div id="alertTop" class=" float-left alert alert-danger fade show  fixed-top shadow " role="alert"> ${error.message}. <a href="./index.html">Voltar para tela de login</a><button type="button" class="close  text-right" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></div>`
         });
+        */
+
+
     
 }
 
 
-//chama a função que consulta o banco de dados e cria os objetos contendo as questões, que serão usados pelas demais funções
-allIdQuestion()
+
 
 
 //VERIFICA O USUÁRIO LOGADO
@@ -136,7 +169,7 @@ auth.onAuthStateChanged(user=>{
 
 
 
-function exibirQuestão(pos){
+function exibirQuestao(pos){
 
     
 
@@ -530,22 +563,23 @@ db.collection(questoes).doc(idQuestions[questaoAtual])
 
 
 
-//NAVEGAÇÃO ENTRE AS QUESTÕES
-function questaoAleatoria(){
-
-}
 
 function qAnterior(){
-    
-    questaoAtual --
-    exibirQuestão(questaoAtual)
+    if (questaoAtual == 0){
+        alerta("Você já está na primeira questão.", false, "secondary")
+    } else {
+        questaoAtual --  
+        exibirQuestao(questaoAtual)   
+    }
+   
 }
 
 function qProxima(){
-
-    idQuestions.length
-    questaoAtual++
-    exibirQuestão(questaoAtual)
+    questaoAtual ++
+    // a próxima questão sempre é uma aleatória
+    //o histórico de questões é salvo no array
+    // questions[0...x]
+    exibirQuestaoAleatoria()
 }
 
 
@@ -782,3 +816,38 @@ function userMenu(){
     }
 
   }
+
+
+
+function exibirQuestaoAleatoria(){
+    ultima = {}
+    
+                    db.collection("bancoQuestoes")
+                    .orderBy("ID", "desc")
+                    .limit(1)
+                    .get()
+                    .then(snapshot=>{
+                        snapshot.forEach(doc=>{
+                            ultima = doc.data()
+                        })
+                    }).then(()=>{
+                        questaoAleatoria(ultima.ID)
+                        console.log("finalizou busca aleatória")
+                        allIdQuestion()
+
+
+                    })
+
+                   
+}
+
+
+function questaoAleatoria(a){
+
+ console.log(a)
+
+ aleatoria = Math.floor(Math.random() * (a - 1) + 1)
+console.log(aleatoria)
+
+
+}
