@@ -466,15 +466,19 @@ function publicarComentario(){
 
     //usuarioLogado
     publicacao = document.querySelector("#coment").value
-    console.log(`Autor: ${usuarioLogado} - comentário: ${publicacao} - FALTA IMPLEMENTAR A FUNÇÃO PARA SALVAR O COMENTÁRIO NO BANCO DE DADOS`)
+    console.log(`Autor: ${usuarioLogado} - comentário: ${publicacao}`)
     datahoraAtual = firebase.default.firestore.Timestamp.now()
 
+
+    //pega a questão atual e converte para number
+    //a fim de posibilitar a consulta ao documento
+    indexQuest = (questions[questaoAtual].ID).toString()
 
     
     idUser = firebase.auth().currentUser.uid
 
 
-db.collection(questoes).doc(idQuestions[questaoAtual])
+db.collection(questoes).doc(indexQuest)
     .collection('comentarios').doc().set({
         comentario: publicacao,
         datahora: datahoraAtual,
@@ -491,8 +495,14 @@ function resgatarComentarios(){
     comments = []
     idUser = firebase.auth().currentUser.uid
 
+    //pega a questão atual e converte para number
+    //a fim de posibilitar a consulta ao documento
+    indexQuest = (questions[questaoAtual].ID).toString()
 
-    db.collection(questoes).doc(idQuestions[questaoAtual])
+
+    //consulta os comentários no banco de dados
+    //eles ficam salvos em uma collection dentro da questão
+    db.collection(questoes).doc(indexQuest)
     .collection('comentarios').get().then(snapshot=>{
         snapshot.forEach(doc=>{
             comments.push(doc.data())
@@ -512,9 +522,13 @@ function resgatarComentarios(){
 function exibeAnotacoes(pos){
     idUser = firebase.auth().currentUser.uid
     campoAnotacao = document.querySelector("#text-anotacoes")
+    
+   //pega a questão atual e converte para number
+    //a fim de posibilitar a consulta ao documento
+    indexQuest = (questions[questaoAtual].ID).toString()
 
 
-    db.collection(questoes).doc(idQuestions[questaoAtual])
+    db.collection(questoes).doc(indexQuest)
     .collection('anotacoes').doc(idUser)    
     .get().then(snapshot=>{
         if (snapshot.data()){
@@ -543,9 +557,12 @@ function salvarAnotacao(){
     $("#spin-anot").toggleClass("d-none")
     anotacoes = document.querySelector("#text-anotacoes").value
     idUser = firebase.auth().currentUser.uid
+   
+    //pega a questão atual e converte para number
+    //a fim de posibilitar a consulta ao documento
+    indexQuest = (questions[questaoAtual].ID).toString()
 
-
-db.collection(questoes).doc(idQuestions[questaoAtual])
+db.collection(questoes).doc(indexQuest)
     .collection('anotacoes').doc(idUser).set({
         anotacao: anotacoes
     }).then(()=>{
