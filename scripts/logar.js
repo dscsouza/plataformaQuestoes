@@ -89,7 +89,8 @@ let autenticacao = {
                                     
                 
                                 }).catch(err=>{
-                                    alerta("Ocorreu um erro. Verifique sua conexão com a internet.", false, "danger")
+                                    alerta("Ocorreu um erro. Suas configurações foram reiniciadas. TENTE LOGAR NOVAMENTE.", false, "danger")
+                                    gravaDarkMode("false")
                                 })
                 }else{
                     console.log("Ninguém logado")
