@@ -7,7 +7,11 @@ questaoAtual = 0;
 comments = [];
 aleatoria = 1
 
-escuro = localStorage.getItem("darkMode")
+
+
+
+escuro = localStorage.getItem("escuro")
+
 
 // INICIALIZA AS VARIÁVEIS NO MODO CLARO
     table = "table-sm"
@@ -129,18 +133,6 @@ function allIdQuestion(){
 
 
 
-//VERIFICA O USUÁRIO LOGADO
-auth.onAuthStateChanged(user=>{
-    if (user){
-        usuarioLogado = user.email;
-    }else{
-        usuarioLogado = "Ninguém logado"
-    }
-})
-
-
-
-
 
 
 
@@ -152,7 +144,7 @@ function imprimeID(){
 }
 
 
-
+/*
 //AO ABRIR A PÁGINA QUESTÕES, VERIFICA QUAL USUÁRIO EST[A LOGADO E SALVA NA 
 //VARIÁVEL usuarioLogado
 auth.onAuthStateChanged(user=>{
@@ -162,7 +154,7 @@ auth.onAuthStateChanged(user=>{
         usuarioLogado = "Ninguém logado"
     }
 })
-
+*/
 
 
 
@@ -337,7 +329,7 @@ function exibirQuestao(pos){
     <div class="tab-pane fade show active" id="comentarios" role="tabpanel" aria-labelledby="coment-tab">
       <!-- COMENTÁRIOS -->
       <div id="autor-coment" class="font-weight-light">
-        ${usuarioLogado}
+        ${firebase.auth().currentUser.email}
       </div>
     
 
@@ -466,7 +458,7 @@ function publicarComentario(){
 
     //usuarioLogado
     publicacao = document.querySelector("#coment").value
-    console.log(`Autor: ${usuarioLogado} - comentário: ${publicacao}`)
+    console.log(`Autor: ${firebase.auth().currentUser.email} - comentário: ${publicacao}`)
     datahoraAtual = firebase.default.firestore.Timestamp.now()
 
 
@@ -474,15 +466,16 @@ function publicarComentario(){
     //a fim de posibilitar a consulta ao documento
     indexQuest = (questions[questaoAtual].ID).toString()
 
-    
+
     idUser = firebase.auth().currentUser.uid
+    userLogado = firebase.auth().currentUser.email
 
 
 db.collection(questoes).doc(indexQuest)
     .collection('comentarios').doc().set({
         comentario: publicacao,
         datahora: datahoraAtual,
-        autor: usuarioLogado
+        autor: userLogado
     }).then(()=>{
         resgatarComentarios()
         alerta("Comentário incluído com sucesso.", false, "info")
@@ -649,7 +642,7 @@ function responder(){
 
 document.querySelector("#noturno-usuario").addEventListener("change", ({target}) => {
     if (target.checked){
-            localStorage.setItem("darkMode", "true");
+            // localStorage.setItem("escuro", "true");
             table1 = "table-sm"
             table2 = "vazia"
             back1 = "bg-light"
@@ -694,13 +687,13 @@ document.querySelector("#noturno-usuario").addEventListener("change", ({target})
             styleTextArea = "background-color: darkgrey; color:white;"
 
 
-            gravaDarkMode("on")
+            // gravaDarkMode("true")
 
 
 
 
     } else {
-            localStorage.setItem("darkMode", "false");
+            // localStorage.setItem("escuro", "false");
             table1 = "table-dark" 
             table2 = "text-white"
             textColor = "text-dark"
@@ -743,7 +736,7 @@ document.querySelector("#noturno-usuario").addEventListener("change", ({target})
             btnPublicar = "btn-outline-dark"
             cardsComent = "max-width: 100%;"
             styleTextArea = " "
-            gravaDarkMode("off")
+            // gravaDarkMode("false")
     }
 })
 
@@ -826,10 +819,10 @@ publiComent.classList.remove(btnPublicar)
 
 
 function userMenu(){
-    escuro = localStorage.getItem("darkMode")
+    escuro = localStorage.getItem("escuro")
     console.log("modal aberto")
     idUser = firebase.auth().currentUser.uid
-    document.querySelector("#emailUsuario").innerHTML = `Email: ${idUser}`
+    document.querySelector("#emailUsuario").innerHTML = `Email: ${firebase.auth().currentUser.email}`
  
     
     

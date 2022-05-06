@@ -33,6 +33,8 @@ function logar(){
     
     
 }
+
+
 function selecionar(a){
     questaoSelecionada = a.id
     if (respostaAtual == ' ' & a != 99){

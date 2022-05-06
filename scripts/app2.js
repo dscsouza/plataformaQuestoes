@@ -31,26 +31,6 @@ var configs = [];
 let emailCurrentUser;
 
 
-// LEITURA E ALTERAÇÃO DO BANCO DE DADOS
-
-function consultaLista(){
-    i = 0;
-    dados = [];
-    console.log("lerlista")
-    db.collection(questoes).get().then(snapshot=>{
-        snapshot.forEach(item =>{
-            dados.push(item.data())
-           
-        })
-    }).catch(error=>{
-        console.log("Erro ao acesar o banco de dados: ", error)
-    })
-    
-    return dados;
-}
-
-
-
 
 
 // VALIDACAO DE USUÁRIOS
@@ -72,46 +52,7 @@ function criarUsuario(email, senha){
 }
 
 
-function login(email, password){
-    document.querySelector("#spin").classList.remove("d-none")
-   console.log("função login", auth)
-    //persistência de dados do usuário
-    //SESSION - fica logado na aba atual, mas em novas abas não loga
-    //LOCAL - pode abrir várias abas que continua logado
-    //NONE - SE ATUALIZAR a página o usuário desloga
-    auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL).then(() =>{
 
-        auth.signInWithEmailAndPassword(email, password)
-        .then( loggedUser => {
-            console.log("Login efetuado: ",auth.currentUser);
-            console.log("UID do usuário: ", firebase.auth().currentUser.uid)
-            document.querySelector("#spin").classList.add("d-none")
-            window.location.href = "./questoes.html";
-        }).catch(error =>{
-            console.log("Ocorreu algum erro na autenticação: ", error);
-            document.querySelector("#spin").classList.add("d-none")
-            document.querySelector('#alertTopContainer').innerHTML = `<div id="alertTop" class="alert alert-danger alert-dismissible fade show  fixed-top shadow" role="alert"> 
-            <div class="row">
-            <div class="col-sm">
-            ${error.message}
-            </div>
-            <div class="col-sm">
-            <button type="button" class="close  text-right" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span>
-            </div>
-            </div>
-            
-            
-            </div>`
-      
-        })
-
-
-    }).catch(error =>{
-        console.log("Ocorreu algum erro na presistência dos dados:  ", error);
-        document.querySelector("#spin").classList.add("d-none")
-    })
-    
-}
 
 function logout(){
     auth.signOut().then(console.log("Usuário deslogado.")).catch(error=>{
@@ -121,44 +62,6 @@ function logout(){
 }
 
 
-
-
-//listen - essa promisse é executada todas as vezes
-//que o usuário muda de estado (logado/deslogado)
-
-function observarLogin(){
-
-    auth.onAuthStateChanged(user=>{
-        if (user){
-            console.log("Usuário Logado: ",user.email);
-        }else{
-            console.log("Ninguém logado")
-        }
-    })
-
-}
-
-
-
-// login("novo@teste.com", "123abc");
-//logar depois de 3 segundos
-// setTimeout(login("novo@teste.com", "123abc"),3000);
-// let user = auth.currentUser
-// console.log(user)
-
-
-//AUTORIZAÇÃO PARA ACESSO AO BANCO DE DADOS
-
-
-function lerLista(){
-    db.collection("lista").get().then(snapshot=>{
-        snapshot.forEach(item =>{
-            console.log(item.data())
-        })
-    }).catch(error=>{
-        console.log("Erro ao acesar o banco de dados: ", error)
-    })
-}
 
 
 //função criada para exibir alertas no topo da tela
@@ -270,6 +173,11 @@ function questaoResolvida(certoErrado){
 
 }
 
+
+
+
+//função que grava a opção do usuário pelo darkMode
+
 function gravaDarkMode(onOff){
     
     idUser = firebase.auth().currentUser.uid //recupera o uID do usuário
@@ -283,35 +191,5 @@ function gravaDarkMode(onOff){
                  }).catch(err=>{
                      alerta("Ocorreu um erro. Verifique sua conexão com a internet.", false, "danger")
                  })
-
-}
-
-//falta implementar alteração do seletor
-function resgataConfigs(){
-    
-    idUser = firebase.auth().currentUser.uid
-
-    a = db.collection("usuarios")
-        .doc(idUser)
-        .collection("configs")
-        .get().then((config)=>{
-                     config.forEach(doc => {
-                        configs.push(doc.data())
-                        
-                     })                    
-                 }).then(()=>{
-                    
-                     alerta("Configuração recuperada", false, "info")
-                     
-
-                 }).catch(err=>{
-                     alerta("Ocorreu um erro. Verifique sua conexão com a internet.", false, "danger")
-                 })
-    
-                //  
-    Promise.all([a]).then(()=>{
-        console.log(configs[0])
-        escuro = localStorage.getItem(configs[0].darkmode)
-    })
 
 }
