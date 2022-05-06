@@ -642,7 +642,7 @@ function responder(){
 
 document.querySelector("#noturno-usuario").addEventListener("change", ({target}) => {
     if (target.checked){
-            // localStorage.setItem("escuro", "true");
+            localStorage.setItem("escuro", "true");
             table1 = "table-sm"
             table2 = "vazia"
             back1 = "bg-light"
@@ -687,13 +687,13 @@ document.querySelector("#noturno-usuario").addEventListener("change", ({target})
             styleTextArea = "background-color: darkgrey; color:white;"
 
 
-            // gravaDarkMode("true")
+            gravaDarkMode("true")
 
 
 
 
     } else {
-            // localStorage.setItem("escuro", "false");
+            localStorage.setItem("escuro", "false");
             table1 = "table-dark" 
             table2 = "text-white"
             textColor = "text-dark"
@@ -736,7 +736,7 @@ document.querySelector("#noturno-usuario").addEventListener("change", ({target})
             btnPublicar = "btn-outline-dark"
             cardsComent = "max-width: 100%;"
             styleTextArea = " "
-            // gravaDarkMode("false")
+            gravaDarkMode("false")
     }
 })
 

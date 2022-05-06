@@ -109,7 +109,7 @@
     border: 3px solid #f1f1f1;
   }
   
-  /* Full-width inputs */
+  /* Full-width inputs
   input[type=text], input[type=password] {
     width: 100%;
     padding: 12px 20px;
@@ -135,7 +135,7 @@
   /* Add a hover effect for buttons */
   button:hover {
     opacity: 0.8;
-  }
+  } */
   
   /* Extra style for the cancel button (red) */
   .cancelbtn {

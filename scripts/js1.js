@@ -34,9 +34,7 @@ function modoEscuro(dark){
 
   
 
-    localStorage.setItem("darkMode", "true");
-
-        
+           
     
     }else {
         
@@ -51,7 +49,7 @@ function modoEscuro(dark){
 
         document.querySelector("#telaLogin").classList.remove("bg-dark")
         document.querySelector("#telaLogin").classList.remove("text-white")
-        localStorage.setItem("darkMode", "false");
+        
     
     }
 }
