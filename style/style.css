@@ -225,3 +225,24 @@
     width: 45px;
     background-color: rgba(175, 110, 56, 0.741);
 }
+
+
+
+/* classe que indica que o comentário pode ser deletado
+exibe o botão para excluir, somente nos comentários feitos pelo próprio usuário */
+.delete-comment-off{
+  display:none;
+}
+
+.delete-comment-on{
+  display:flexbox;
+ 
+}
+.lixeira:hover{
+  background-color: rgba(128, 128, 128, 0.197);
+  color: black;
+  cursor:pointer;
+  border-radius: 5px;
+  
+ 
+}

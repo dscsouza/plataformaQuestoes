@@ -425,9 +425,13 @@ function exibirComentarios(arrayComment){
         let hora = addZero(dataPublicacao.getHours())
         let minuto = addZero(dataPublicacao.getMinutes())
 
-        
+        if (arg.autor == firebase.auth().currentUser.email){
+            deleteComment = "delete-comment-on"
+        } else {
+            deleteComment = "delete-comment-off"
+        }
         nodeComentario += `
-        <div class="comentClass card border-secondary mb-2 ${textColor}" style="${cardsComent}">
+        <div class="${deleteComment} comentClass card border-secondary mb-2 ${textColor}" style="${cardsComent}; text-align: left;">
           <div class="card-header small">Publicado ${diaSemana} dia ${dia} de ${mes} de ${ano} às ${hora}:${minuto}h</div>
           <div class="card-body">
             <h5 class="card-title ">${arg.autor}</h5>
@@ -435,6 +439,12 @@ function exibirComentarios(arrayComment){
             ${arg.comentario}
             </p>
           </div>
+            <div class="p-2 ${deleteComment}" style="text-align: right;" onclick="deletarComentario(this)">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="lixeira bi bi-trash" viewBox="0 0 16 16">
+                    <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                    <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                </svg>
+            </div>
         </div>`;
 
         document.querySelector("#list-coment").innerHTML = nodeComentario
@@ -505,7 +515,9 @@ function resgatarComentarios(){
 }
 
 
-
+function deletarComentario(elemento){
+    console.log("deletar comentário", elemento)
+}
 
 
 function exibeAnotacoes(pos){
