@@ -601,7 +601,11 @@ function qProxima(){
 // VERIFICA SE A RESPOSTA ESTÁ CORRETA
 
 function responder(){
-    
+    if (respostaAtual == " "){
+        alerta("Selecione uma alternativa...", false, "warning")
+        return
+    }
+
     respostaCerta = questions[questaoAtual].alternativas.gabarito
     console.log(`Questao atual: ${questaoAtual}, Resposta Certa: ${respostaCerta}, Questão Selecionada ${respostaAtual}`)
 
