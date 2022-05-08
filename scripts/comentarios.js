@@ -1,3 +1,5 @@
+keyComment = []
+
 meses = ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho'
         ,'Agosto','Setembro','Outubro','Novembro','Dezembro']
 
@@ -11,6 +13,7 @@ function addZero(i) {
 
 function exibirComentarios(arrayComment){
     nodeComentario = " "
+    j = 0;
     
     //cria um array secundário que armazena os segundos e os índices
     var mapped = arrayComment.map(function(el, i) {
@@ -54,7 +57,7 @@ function exibirComentarios(arrayComment){
             ${arg.comentario}
             </p>
           </div>
-            <div class="p-2 ${deleteComment}" style="text-align: right;" onclick="deletarComentario(this)">
+            <div class="p-2 ${deleteComment}" style="text-align: right;" onclick="deletarComentario(this)" data-key=${keyComment[j]}>
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="lixeira bi bi-trash" viewBox="0 0 16 16">
                     <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
                     <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
@@ -63,6 +66,7 @@ function exibirComentarios(arrayComment){
         </div>`;
 
         document.querySelector("#list-coment").innerHTML = nodeComentario
+        j++
         
 
     })
@@ -108,6 +112,7 @@ db.collection(questoes).doc(indexQuest)
 
 function resgatarComentarios(){
     comments = []
+    keyComment = []
     idUser = firebase.auth().currentUser.uid
 
     //pega a questão atual e converte para number
@@ -122,6 +127,8 @@ function resgatarComentarios(){
     db.collection(questoes).doc(indexQuest)
     .collection('comentarios').get().then(snapshot=>{
         snapshot.forEach(doc=>{
+            keyComment.push(doc._delegate._key.path.segments[doc._delegate._key.path.segments.length-1]) 
+            //doc._delegate._document.key.segments
             comments.push(doc.data())
         })
 
@@ -134,63 +141,18 @@ function resgatarComentarios(){
 
 
 function deletarComentario(elemento){
-    console.log("deletar comentário", elemento)
-
-    /*
-    function publicarComentario(){
-
-            //pegar hora do servidor do firebase
-            //firebase.database.ServerValue.TIMESTAMP
-        
-            //usuarioLogado
-            publicacao = document.querySelector("#coment").value
-            console.log(`Autor: ${firebase.auth().currentUser.email} - comentário: ${publicacao}`)
-            datahoraAtual = firebase.default.firestore.Timestamp.now()
-        
-        
-            //pega a questão atual e converte para number
-            //a fim de posibilitar a consulta ao documento
-            indexQuest = (questions[questaoAtual].ID).toString()
-        
-        
-            idUser = firebase.auth().currentUser.uid
-            userLogado = firebase.auth().currentUser.email
-        
-        
-        db.collection(questoes).doc(indexQuest)
-            .collection('comentarios').doc().set({
-                comentario: publicacao,
-                datahora: datahoraAtual,
-                autor: userLogado
-            }).then(()=>{
-                resgatarComentarios()
-                alerta("Comentário excluído com sucesso.", false, "info")
-            }).catch(err=>{
-                alerta("Ocorreu um erro. Verifique sua conexão com a internet.", false, "danger")
-            })
-        }
-        */
+    comentarioDeletar = elemento.dataset.key
+    indexQuest = (questions[questaoAtual].ID).toString()
 
 
 
-        /*
+    db.collection(questoes).doc(indexQuest).collection('comentarios').doc(comentarioDeletar).delete().then(() => {
+        exibirQuestao(questaoAtual)
+        alerta("Comentário excluído com sucesso.", false, "info")
+    }).catch((error) => {
+        exibirQuestao(questaoAtual)
+        alerta("Ocorreu algum erro ao excluir o comentário. Tente novamente...", false, "warning")
+    });
 
-db.collection(turma).where("nome", "==", "Marcos").get()
-    .then(snapshot=>
-    {
-        snapshot.forEach((doc) => 
-        {
-            console.log('deletando todos os documentos cujo nome contenha Marcos');
-            db.collection(turma).doc(doc.id).delete().then(()=>
-            {
-                console.log("documentos deletados com sucesso")
-            }).catch((err)=>{
-                console.log("erro: ", err)
-            });
-            
-        })
-    })
-
-*/
 
 }
