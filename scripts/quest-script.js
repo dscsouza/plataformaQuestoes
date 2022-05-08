@@ -11,6 +11,7 @@ btnAtivado = false
 
 
 
+
 escuro = localStorage.getItem("escuro")
 
 
@@ -395,7 +396,7 @@ function addZero(i) {
 
 function exibirComentarios(arrayComment){
     nodeComentario = " "
-
+    
     //cria um array secundário que armazena os segundos e os índices
     var mapped = arrayComment.map(function(el, i) {
         return { index: i, value: el.datahora.seconds};
@@ -437,10 +438,13 @@ function exibirComentarios(arrayComment){
         </div>`;
 
         document.querySelector("#list-coment").innerHTML = nodeComentario
+        
 
     })
 
 }
+
+
 
 
 function publicarComentario(){
