@@ -78,11 +78,21 @@ function exibirComentarios(arrayComment){
 
 function publicarComentario(){
 
-//pegar hora do servidor do firebase
-//firebase.database.ServerValue.TIMESTAMP
+
+
+
+
+    //pegar hora do servidor do firebase
+    //firebase.database.ServerValue.TIMESTAMP
 
     //usuarioLogado
     publicacao = document.querySelector("#coment").value
+
+    if (publicacao == ""){
+        alerta("Digite um comentário antes de publicar...", false, "info")
+        return
+    }
+
     console.log(`Autor: ${firebase.auth().currentUser.email} - comentário: ${publicacao}`)
     datahoraAtual = firebase.default.firestore.Timestamp.now()
 
@@ -108,6 +118,7 @@ db.collection(questoes).doc(indexQuest)
     }).catch(err=>{
         alerta("Ocorreu um erro. Verifique sua conexão com a internet.", false, "danger")
     })
+    document.querySelector("#coment").value = ""
 }
 
 function resgatarComentarios(){
