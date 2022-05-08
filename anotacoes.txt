@@ -1,3 +1,10 @@
+
+
+
+document.getElementById("#btn-proxima").disabled = true
+
+
+
 <div class="comentClass card border-secondary mb-2 ${textColor}" style="max-width: 100%;">
          
 

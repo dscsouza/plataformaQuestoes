@@ -6,6 +6,7 @@ questions = []
 questaoAtual = 0;
 comments = [];
 aleatoria = 1
+btnAtivado = false
 
 
 
@@ -38,7 +39,7 @@ if (escuro == "true"){
     back = "bg-dark text-white"
     navQuestion = "navbar-dark bg-transparent"
     btnPublicar = "btn-outline-light"
-    btnNavi = "btn-outline-light"
+    btnNavi = "btn-secondary text-black"
     document.body.style.setProperty('--texto-questao', 'white')
     document.body.style.setProperty('--bg-color-body', 'rgba(0, 0, 0, 0.803)')
     styleTextArea ="background-color: darkgrey; color:white;"
@@ -55,7 +56,7 @@ if (escuro == "true"){
     navQuestion = "navbar-light bg-light"
     document.body.style.setProperty('--texto-questao', 'black')
     document.body.style.setProperty('--bg-color-body', 'white')
-    btnNavi = "btn-outline-light text-primary"
+    btnNavi = "btn-secondary text-black"
     btnPublicar = "btn-outline-dark"
     styleTextArea =" "
     cardsComent = "max-width: 100%;"
@@ -75,19 +76,17 @@ exibirQuestaoAleatoria()
 
 //função que lÊ o banco de dados e trás as informações das questões
 function allIdQuestion(){
-
         db.collection(questoes).doc(aleatoria.toString()).get().then(doc=>{
-            //inclui a próxima questão no array questions
-            questions.push(doc.data()) 
-            //mostra o jSon da questão no console
-            console.log(questions[questaoAtual])
-            //exibe a questão atual, inicialmente esse valor é 0
-            exibirQuestao(questaoAtual)
+                //inclui a próxima questão no array questions
+                questions.push(doc.data()) 
+                //mostra o jSon da questão no console
+                console.log(questions[questaoAtual])
+                //exibe a questão atual, inicialmente esse valor é 0
+                exibirQuestao(questaoAtual)
 
-            //a variável  "questaoAtual" é incrementada
-            // ou decrementada quando o usuário clica
-            //em próxima ou anterior
-            
+                //a variável  "questaoAtual" é incrementada
+                // ou decrementada quando o usuário clica
+                //em próxima ou anterior   
         }).
         catch(error=>{
             console.log("Erro ao acesar o banco de dados: ", error)
@@ -162,11 +161,8 @@ auth.onAuthStateChanged(user=>{
 
 
 function exibirQuestao(pos){
-
     
-
     document.querySelector("#bodyApp").innerHTML=`
-    
     
         <nav class="navbar sticky-top navbar-light bg-transparent w-100">
         
@@ -255,18 +251,14 @@ function exibirQuestao(pos){
         
         <nav id="navQuestion" class="navbar sticky-bottom ${navQuestion} bg-gradient">
     
-        
-      
-       
-
           <a id="btn-anterior" onclick = "qAnterior()" href="#" tabindex="-1">
-          <div id="n4" class="btn ${btnNavi} font-italic ">
+          <button id="n4" class="btn ${btnNavi} font-italic ">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-double-left" viewBox="0 0 16 16">
-        <path fill-rule="evenodd" d="M8.354 1.646a.5.5 0 0 1 0 .708L2.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
-        <path fill-rule="evenodd" d="M12.354 1.646a.5.5 0 0 1 0 .708L6.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
-        </svg>
+                <path fill-rule="evenodd" d="M8.354 1.646a.5.5 0 0 1 0 .708L2.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
+                <path fill-rule="evenodd" d="M12.354 1.646a.5.5 0 0 1 0 .708L6.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
+                </svg>
                 Anterior 
-            </div>
+            </button>
           </a>
           
 
@@ -280,20 +272,18 @@ function exibirQuestao(pos){
 
           
           <a id="btn-proxima" onclick = "qProxima()" href="#" tabindex="1">
-          <div id="n5" class="btn ${btnNavi} font-italic">
-          Próxima 
-          <svg class="" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-double-right" viewBox="0 0 16 16">
-  <path fill-rule="evenodd" d="M3.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L9.293 8 3.646 2.354a.5.5 0 0 1 0-.708z"/>
-  <path fill-rule="evenodd" d="M7.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L13.293 8 7.646 2.354a.5.5 0 0 1 0-.708z"/>
-</svg>
-            </div>
+          <button id="n5" class="btn ${btnNavi} font-italic">
+            Próxima 
+            <svg class="" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-double-right" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M3.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L9.293 8 3.646 2.354a.5.5 0 0 1 0-.708z"/>
+            <path fill-rule="evenodd" d="M7.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L13.293 8 7.646 2.354a.5.5 0 0 1 0-.708z"/>
+                </svg>
+            </button>
           </a>
 
           
       
       </nav>`
-
-
 
 
 
@@ -385,6 +375,8 @@ function exibirQuestao(pos){
 
 resgatarComentarios()
 exibeAnotacoes(pos)
+
+
 
 
 
@@ -576,20 +568,33 @@ db.collection(questoes).doc(indexQuest)
 
 function qAnterior(){
     if (questaoAtual == 0){
-        alerta("Você já está na primeira questão.", false, "secondary")
+        alerta("Você já está na primeira questão.", false, "warning")
     } else {
         questaoAtual --  
         exibirQuestao(questaoAtual)   
     }
+    console.log(`ANTERIOR: Questão atual: ${questaoAtual}. Tamanho Array Questions ${questions.length}. ID questão  - ${questions[questaoAtual].ID}`)
+
    
 }
 
 function qProxima(){
-    questaoAtual ++
-    // a próxima questão sempre é uma aleatória
-    //o histórico de questões é salvo no array
-    // questions[0...x]
-    exibirQuestaoAleatoria()
+         // a próxima questão sempre é uma questão aleatória
+        //o histórico de questões é salvo no array
+        // questions[0...x]
+
+     
+        //só incrementa a variável  questãoAtual, se ela for menor 
+        //que a quantidade de questões no array questions
+        //isso evita que o sistema tente exibir uma questão que ainda não foi carregada
+        if (questaoAtual < questions.length){
+            questaoAtual ++
+            exibirQuestaoAleatoria()
+        } else {
+            alerta("Carregando...",false, "warning")
+        }
+ 
+        console.log(`PRÓXIMA: Questão atual: ${questaoAtual}. Array Questions ${questions.length}`)         
 }
 
 
@@ -653,8 +658,8 @@ document.querySelector("#noturno-usuario").addEventListener("change", ({target})
             navQuestion2  = "bg-light"
             document.body.style.setProperty('--texto-questao', 'white')
             document.body.style.setProperty('--bg-color-body', 'rgba(0, 0, 0, 0.803)')
-            btnNavi1 = "btn-outline-light" 
-            btnNavi2 = "text-primary"
+            btnNavi1 = "btn-secondary" 
+            btnNavi2 = "text-black"
             btnPublicar = "btn-outline-dark"
             removeCssEscuro()
             table1 = "table-dark" 
@@ -666,7 +671,7 @@ document.querySelector("#noturno-usuario").addEventListener("change", ({target})
             navQuestion1 = "navbar-dark" 
             navQuestion2 = "bg-transparent"
             btnPublicar = "btn-outline-light"
-            btnNavi1 = "btn-outline-light"
+            btnNavi1 = "btn-secondary"
             btnNavi2 = "vazia"
             incluirCssEscuro()
             table = "table-dark text-white"
@@ -682,7 +687,7 @@ document.querySelector("#noturno-usuario").addEventListener("change", ({target})
             back = "bg-dark text-white"
             navQuestion = "navbar-dark bg-transparent"
             btnPublicar = "btn-outline-light"
-            btnNavi = "btn-outline-light"
+            btnNavi = "btn-secondary"
             cardsComent = "max-width: 100%; background-color: darkgrey; color:white;"
             styleTextArea = "background-color: darkgrey; color:white;"
 
@@ -703,7 +708,7 @@ document.querySelector("#noturno-usuario").addEventListener("change", ({target})
             navQuestion1 = "navbar-dark" 
             navQuestion2 = "bg-transparent"
             btnPublicar = "btn-outline-light"
-            btnNavi1 = "btn-outline-light"
+            btnNavi1 = "btn-secondary"
             btnNavi2 = "vazia"
             removeCssEscuro()
             table1 = "table-sm"
@@ -716,8 +721,8 @@ document.querySelector("#noturno-usuario").addEventListener("change", ({target})
             navQuestion2  = "bg-light"
             document.body.style.setProperty('--texto-questao', 'black')
             document.body.style.setProperty('--bg-color-body', 'white')
-            btnNavi1 = "btn-outline-light" 
-            btnNavi2 = "text-primary"
+            btnNavi1 = "btn-secondary" 
+            btnNavi2 = "text-black"
             btnPublicar = "btn-outline-dark"
             incluirCssEscuro()
             document.querySelector("#text-anotacoes").style.cssText = " "
@@ -732,7 +737,7 @@ document.querySelector("#noturno-usuario").addEventListener("change", ({target})
             textColor = "text-black"
             textDark = "text-dark"
             navQuestion = "navbar-light bg-light"
-            btnNavi = "btn-outline-light text-primary"
+            btnNavi = "btn-secondary text-black"
             btnPublicar = "btn-outline-dark"
             cardsComent = "max-width: 100%;"
             styleTextArea = " "
@@ -744,39 +749,39 @@ document.querySelector("#noturno-usuario").addEventListener("change", ({target})
 
 
 function incluirCssEscuro(){
-    n1 =  document.querySelector("#n1")
-n2 = document.querySelector("#n2")
-n3 = document.querySelector("#n3")
-n4 = document.querySelector("#n4")
-n5 = document.querySelector("#n5")
-n6 = document.querySelector("#n6")
-tableQ = document.querySelector("#tableQuestion")
-navQ = document.querySelector("#navQuestion")
-publiComent = document.querySelector("#publi-coment")
-cardComentarios = document.querySelector(".comentClass")
+        n1 =  document.querySelector("#n1")
+        n2 = document.querySelector("#n2")
+        n3 = document.querySelector("#n3")
+        n4 = document.querySelector("#n4")
+        n5 = document.querySelector("#n5")
+        n6 = document.querySelector("#n6")
+        tableQ = document.querySelector("#tableQuestion")
+        navQ = document.querySelector("#navQuestion")
+        publiComent = document.querySelector("#publi-coment")
+        cardComentarios = document.querySelector(".comentClass")
 
 
 // document.querySelectorAll(".comentClass").forEach((a)=>{a.classList.add("deyvison")})
 
-    n1.classList.add(back1)
-    n1.classList.add(back2)
-    n2.classList.add(back1)
-    n2.classList.add(back2)
-    n3.classList.add(table1)
-    n3.classList.add(table2)
-    n3.classList.add(textDark)
-    n4.classList.add(btnNavi1)
-    n4.classList.add(btnNavi2)
-    n5.classList.add(btnNavi1)
-    n5.classList.add(btnNavi2)
+        n1.classList.add(back1)
+        n1.classList.add(back2)
+        n2.classList.add(back1)
+        n2.classList.add(back2)
+        n3.classList.add(table1)
+        n3.classList.add(table2)
+        n3.classList.add(textDark)
+        n4.classList.add(btnNavi1)
+        n4.classList.add(btnNavi2)
+        n5.classList.add(btnNavi1)
+        n5.classList.add(btnNavi2)
 
-    n6.classList.add(back1)
-    n6.classList.add(back2)
-    tableQ.classList.add(table1)
-    tableQ.classList.add(table2)
-    navQ.classList.add(navQuestion1)
-    navQ.classList.add(navQuestion2)
-    publiComent.classList.add(btnPublicar)
+        n6.classList.add(back1)
+        n6.classList.add(back2)
+        tableQ.classList.add(table1)
+        tableQ.classList.add(table2)
+        navQ.classList.add(navQuestion1)
+        navQ.classList.add(navQuestion2)
+        publiComent.classList.add(btnPublicar)
 }
 
 function removeCssEscuro(){
