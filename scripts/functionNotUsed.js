@@ -45,3 +45,18 @@ function login(email, password){
 
 
 
+
+// FUNÇÕES DE LOGIN
+
+function logar(){
+    document.querySelector("#spin").classList.remove("d-none")
+    username = document.querySelector("#username").value
+    password = document.querySelector("#password").value
+    console.log(username, password)
+    login(username, password)
+
+    
+    
+}
+
+
