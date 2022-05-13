@@ -53,10 +53,16 @@ function responder(){
         questaoResolvida("certa")
         $("#" + respostaAtual).toggleClass("resposta-certa")
         setTimeout(() => {
-            $("#" + respostaAtual).removeClass("resposta-certa")
+            // $("#" + respostaAtual).removeClass("resposta-certa")
             selecionar(99)
         }, 420);
+
+        document.querySelector("#btn-responder").disabled = true
+        document.querySelector("#btn-responder").classList.add("ponteiro-proibido")
+        
     }else{
+        $("#" + respostaAtual).toggleClass("resposta-errada")
+        $("#" + respostaCerta).toggleClass("resposta-certa")
         $("#qErrou").text("Errou!    -    "+"Resposta certa: " + respostaCerta)
 
         $("#qErrou").fadeOut(2000, ()=>{
@@ -68,13 +74,15 @@ function responder(){
        
 
         console.log("resposta errada")
-        $("#" + respostaAtual).toggleClass("resposta-errada")
-        $("#" + respostaCerta).toggleClass("resposta-certa")
+        
         setTimeout(() => {
-            $("#" + respostaAtual).removeClass("resposta-errada")
-            $("#" + respostaCerta).removeClass("resposta-certa")
+            // $("#" + respostaAtual).removeClass("resposta-errada")
+            // $("#" + respostaCerta).removeClass("resposta-certa")
             selecionar(99)
         }, 420);
+        document.querySelector("#btn-responder").disabled = true
+        document.querySelector("#btn-responder").classList.add("ponteiro-proibido")
+
         
     }
 

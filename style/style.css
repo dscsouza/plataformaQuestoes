@@ -56,18 +56,34 @@
 .resposta-errada{
     animation: errada .4s;
     animation-iteration-count: 2;
+    animation-fill-mode: forwards;
+
 
 }
 .resposta-certa{
   animation: certa .4s;
   animation-iteration-count: 2;
-  
+  animation-fill-mode: forwards;
 }
 
 .ponteiro{
   cursor: pointer;
-  ;
 }
+
+.ponteiro-proibido{
+  cursor:not-allowed;
+}
+.nav-anterior-imagem{
+  content: attr(data-back);
+  
+}
+.nav-anterior-texto{
+  content: attr(data-front);
+ 
+}
+
+
+
 
 .question{
   user-select: none;

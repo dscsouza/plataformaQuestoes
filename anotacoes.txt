@@ -1,5 +1,7 @@
 
 
+proxima ---   d-none d-sm-block d-md-non 
+
 
 
 Object { _firestore: {…}, _delegate: {…} }
