@@ -42,3 +42,38 @@ function exibirEstatiscas(){
    
 
 }
+
+function ultimaVezResolvida(){
+
+    //FALTA IMPLEMENTAR ESSA FUNÇÃO
+    //TEREMOS QUE PESQUISAR SE A QUESTÃO EXISTE
+    //CASO EXISTA EXIBIR DISCRETAMENTE UMA MENSAGEM SE O USUÁRIO JÁ RESPONDEU OU NÃO,
+    //SE ACERTOU OU NÃO,  E O DIA QUE O FEZ
+
+
+
+
+    idUser = firebase.auth().currentUser.uid
+    campoAnotacao = document.querySelector("#text-anotacoes")
+    
+   //pega a questão atual e converte para number
+    //a fim de posibilitar a consulta ao documento
+    indexQuest = (questions[questaoAtual].ID).toString()
+
+
+
+    func1 = db.collection(usuarios).doc(idUser.toString())
+    .collection('questoes')..get().then(snapshot=>{
+        snapshot.forEach(doc=>{
+            estatistica.push(doc.data())
+        })
+
+    }).then(()=>{
+
+        estatistica.find(q => {q.conceito === "certa"?qtdCerta++:qtdErrada++})
+        totalResolvidas = estatistica.length
+        console.log(`Você respondeu ${totalResolvidas} questões. Acertou ${qtdCerta}, errou ${qtdErrada}, \n ${((qtdCerta/totalResolvidas)*100).toFixed(2)}% de acertos e ${((qtdErrada/totalResolvidas) * 100).toFixed(2)}% de erro.`)
+        
+        
+    })
+}
