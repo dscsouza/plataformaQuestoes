@@ -71,7 +71,6 @@ function responder(){
         })
 
         questaoResolvida("errada")
-       
 
         console.log("resposta errada")
         
@@ -81,11 +80,31 @@ function responder(){
             selecionar(99)
         }, 420);
         document.querySelector("#btn-responder").disabled = true
-        document.querySelector("#btn-responder").classList.add("ponteiro-proibido")
-
-        
+        document.querySelector("#btn-responder").classList.add("ponteiro-proibido")  
     }
+}
 
+
+function questaoResolvida(certoErrado){
+    datahoraAtual = firebase.default.firestore.Timestamp.now()
+    idUser = firebase.auth().currentUser.uid //recupera o uID do usuário
+    
+    //utiliza o método set(), caso o documento com uID  do usuário não tenha sido criado, ele cria nesse momento
    
+
+
+                 db.collection("usuarios").doc(idUser)
+                 .collection("questoes").doc((questions[questaoAtual].ID).toString()).set({
+                    id:  questions[questaoAtual].ID,
+                    conceito: certoErrado,
+                    datahora: datahoraAtual
+                 }).then(()=>{
+                     resgatarComentarios()
+                     alerta("Questão registrada.", false, "info")
+                 }).catch(err=>{
+                     alerta("Ocorreu um erro. Verifique sua conexão com a internet.", false, "danger")
+                 })
+
+
 
 }

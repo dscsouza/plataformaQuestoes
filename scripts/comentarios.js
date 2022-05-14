@@ -78,10 +78,6 @@ function exibirComentarios(arrayComment){
 
 function publicarComentario(){
 
-
-
-
-
     //pegar hora do servidor do firebase
     //firebase.database.ServerValue.TIMESTAMP
 
