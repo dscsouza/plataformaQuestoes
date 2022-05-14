@@ -63,7 +63,7 @@ function ultimaVezResolvida(){
 
 
     func1 = db.collection(usuarios).doc(idUser.toString())
-    .collection('questoes')..get().then(snapshot=>{
+    .collection('questoes').get().then(snapshot=>{
         snapshot.forEach(doc=>{
             estatistica.push(doc.data())
         })
