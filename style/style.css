@@ -263,3 +263,8 @@ exibe o botão para excluir, somente nos comentários feitos pelo próprio usuá
   cursor:pointer;
   border-radius: 5px;
 }
+
+
+.teste{
+  width: fit-content;
+}

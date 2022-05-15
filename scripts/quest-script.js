@@ -48,15 +48,16 @@ function exibirQuestao(pos){
     
     document.querySelector("#bodyApp").innerHTML=`
     
-        <nav class="navbar sticky-top navbar-light bg-transparent w-100">
+        <nav class="navbar sticky-top navbar-light bg-transparent">
         
-        <div class="d-flex justify-content-center w-100">
-            <nav class="navbar bg-semitransparente">
-                <button class="navbar-toggler" type="button" onclick="userMenu()" data-toggle="modal" data-target="#interfaceUsuario" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Alterna navegação">
+        <div style="display: inline-grid; grid-template-columns: 1fr 10fr 1fr; width:100%">
+
+                <button class="navbar-toggler" style=""  type="button" onclick="userMenu()" data-toggle="modal" data-target="#interfaceUsuario" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Alterna navegação">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-            </nav>
-            <div class="w-100 bg-primary bg-gradient text-center text-white font-weight-light border rounded">
+
+            
+            <div style="" class="bg-primary bg-gradient text-center text-white font-weight-light border rounded p-2 bd-highlight" >
                 Questão ${questions[pos].ID} -
                 Ano: ${questions[pos].ano} -
 
@@ -66,7 +67,16 @@ function exibirQuestao(pos){
 
                 Cargo: ${questions[pos].cargo}
             </div>
-            </div>
+          
+            <button class=" g-col-1 navbar-toggler" style="" type="button" onclick="" data-toggle="modal" data-target="#modalFilter" aria-controls="navbarToggleExternalContent" aria-expanded="false">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-filter" viewBox="0 0 16 16">
+                        <path d="M6 10.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z"/>
+                        </svg>
+            </button>
+        
+
+        </div>
+           
         </nav>
 
     <div id = "n1" class="w-100 container ${back}">
