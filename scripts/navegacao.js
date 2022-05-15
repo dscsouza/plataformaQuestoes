@@ -70,6 +70,7 @@ function responder(){
             $("#qErrou").show()
         })
 
+        //  função que registra no banco de dados se o usuário acertou ou errou a questão
         questaoResolvida("errada")
 
         console.log("resposta errada")

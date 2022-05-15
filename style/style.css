@@ -66,6 +66,10 @@
   animation-fill-mode: forwards;
 }
 
+.change-avatar:hover{
+  cursor: pointer;
+}
+
 .ponteiro{
   cursor: pointer;
 }
@@ -79,7 +83,6 @@
 }
 .nav-anterior-texto{
   content: attr(data-front);
- 
 }
 
 

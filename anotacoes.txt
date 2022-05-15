@@ -1,5 +1,13 @@
 
 
+STORAGE
+
+const storage = firebase.storage();
+const imgUsers = storageRef.child('imgUsers')
+const imgQuestoes = storageRef.child('imgQuestoes')
+
+
+
 proxima ---   d-none d-sm-block d-md-non 
 
 

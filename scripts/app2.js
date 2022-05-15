@@ -26,6 +26,14 @@ const raizComentarios = "comentarios"
 const raizAnotacoes = "anotacoes"
 const raizUsuarios = "usuarios"
 const raizIds = "ids"
+
+
+
+const storage = firebase.storage();
+const storageRef = firebase.storage().ref();
+const imgUsers = storageRef.child('imgUsers')
+const imgQuestoes = storageRef.child('imgQuestoes')
+
 var configs = [];
 
 let emailCurrentUser;
