@@ -180,3 +180,13 @@ function gravaDarkMode(onOff){
                  })
 
 }
+
+
+document.addEventListener("DOMContentLoaded", function(event) {
+    avt = localStorage.getItem('avatar')
+    if (avt){
+
+        imgAvatar = document.querySelector('#imgAvatar').src = avt;
+    }
+    
+  });

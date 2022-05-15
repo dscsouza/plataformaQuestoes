@@ -146,7 +146,9 @@ function uploadArquivo(file){
                  .collection("configs").doc('avatar').set({
                     url:  downloadURL
                  }).then(()=>{
-                     resgatarComentarios()
+                    //altera a imagem diretamente na interface 
+                    imgAvatar = document.querySelector('#imgAvatar').src = downloadURL;
+
                      alerta("Imagem alterada com sucesso.", false, "info")
                  }).catch(err=>{
                      alerta("Ocorreu um erro. Verifique sua conexão com a internet.", false, "danger")

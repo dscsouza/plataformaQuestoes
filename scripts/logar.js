@@ -66,7 +66,7 @@ let autenticacao = {
         
 
         },
-
+        //RESGATA AS CONFIGURAÇÕES DO USUÁRIO DO BANCO DE DADOS
         configuracoes: function (){
             auth.onAuthStateChanged(user=>{
                 if (user){
@@ -82,9 +82,20 @@ let autenticacao = {
                                         
                                     })                    
                                 }).then(()=>{
-                                    
+                                    console.log("CONFIGURA")
                                     alerta("Configuração recuperada", false, "info")
-                                    localStorage.setItem("escuro", configs[0].darkmode)
+
+                                    if (configs[0].url){
+                                        localStorage.setItem("avatar", configs[0].url)
+                                    } else if (configs[0].darkmode){
+                                        localStorage.setItem("escuro", configs[0].darkmode)
+                                    } else{
+                                        localStorage.setItem("escuro", configs[1].darkmode)
+                                    }
+                                        
+                                    
+                                    
+                                    
                                     this.exibePaginaQuestoes(); // abre a página principal de questões
                                     
                 
