@@ -83,26 +83,54 @@
 
 
 
-  <!-- INTERFACE DE FILTROS -->
-  <div class="modal fade" id="modalFilter" tabindex="-1" role="dialog" aria-labelledby="TituloModalLongoExemplo" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header text-rigth w-100">
+<!-- INTERFACE DE FILTROS -->
+<div class="modal fade" id="modalFilter" tabindex="0" role="dialog" aria-labelledby="TituloModalLongoExemplo" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-rigth w-100">
+          FILTROS - CRITÉRIOS    
+      </div>
+      <div class="modal-body">
           
+        <div class="card-group">
+          <!-- CARD ANO -->
+          <div class="card w-25 text-center p-2">
+            <div class="card-body p-0">
+                    <label for="inputEstado">Ano</label>
+                    <select class="form-control" name="Ano">
+                    <option value="TODOS">Todos</option>
+                    <option value="MG">2022</option>
+                    <option value="RJ">2019</option>
+                    <option value="SP">2018</option>
+                  </select>
+            </div>
+          </div>
+          <div class="card w-25 p-2 justify-content-center align-content-center border-right-0 border-bottom-0 border-top-0">
+              <svg class="plus" xmlns="http://www.w3.org/2000/svg" onclick="novoFiltro()" width="32" height="32" fill="currentColor" class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
+                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z"/>
+              </svg>
+          </div>
+
+
+
         </div>
-        <div class="modal-body">
-          A implantar filtros
           
-        </div>
-        <div class="modal-footer">
-  
+
+        
+
           
+
+          
+
+        <div class="modal-footer mt-3">
           <!-- BOTAO OK PARA DISMISS MODAL FILTROS  -->
-          <button type="button" data-dismiss="modal" class="btn btn-primary">Ok</button>
+          <button type="button" data-dismiss="modal" class="btn btn-primary">Aplicar</button>
         </div>
+
       </div>
     </div>
   </div>
+</div>
 
 
 

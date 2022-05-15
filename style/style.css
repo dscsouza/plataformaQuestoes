@@ -268,3 +268,10 @@ exibe o botão para excluir, somente nos comentários feitos pelo próprio usuá
 .teste{
   width: fit-content;
 }
+
+
+
+.plus:hover{
+  cursor: pointer;
+  opacity: 0.8;
+}

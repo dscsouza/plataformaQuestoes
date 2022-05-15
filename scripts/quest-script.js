@@ -53,7 +53,7 @@ function exibirQuestao(pos){
         <div style="display: inline-grid; grid-template-columns: 1fr 10fr 1fr; width:100%">
 
                 <button class="navbar-toggler" style=""  type="button" onclick="userMenu()" data-toggle="modal" data-target="#interfaceUsuario" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Alterna navegação">
-                    <span class="navbar-toggler-icon"></span>
+                <span class="navbar-toggler-icon"></span>
                 </button>
 
             
